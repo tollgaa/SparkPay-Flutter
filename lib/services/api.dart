@@ -1,0 +1,1 @@
+//Sunucuya bağlantı, veri alım-gönderimi

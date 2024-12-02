@@ -1,0 +1,1 @@
+//Uygulamada sayfa ve navigssyon işlemleri burada yapılıyor.

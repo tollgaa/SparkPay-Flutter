@@ -1,2 +1,3 @@
-# SparkPay-Flutter
-Istinye University Student Project
+# sparkpay
+
+A new Flutter project.
