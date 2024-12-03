@@ -3,7 +3,7 @@
   
 
 [İstinye Üniversitesi](https://www.unitededucation.com/linklogoch/istinye-university-logo.png)
-![İstinye Üniversitesi Logosu](https://unitededucation.com/en/Universities/Istinye_University.png)
+![İstinye Üniversitesi Logosu](https://unitededucation.com/en/Universities/Istinye_University)
 
   
 
