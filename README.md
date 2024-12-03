@@ -17,12 +17,12 @@ tasarlanmış sayfaları içerir.
 ## Ekibimiz
 
 -  **Danışman:**  
-[https://github.com/keyvanarasteh](Keyvan Arasteh)
+[https://github.com/keyvanarasteh] (Keyvan Arasteh)
 
 
 -  **Takım Üyeleri:**
 
-- [https://github.com/tollgaa](Tolga Murat Tor)
+- [https://github.com/tollgaa] (Tolga Murat Tor)
 
   
 
