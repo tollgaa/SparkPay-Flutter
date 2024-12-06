@@ -1,8 +1,10 @@
+
 # Flutter Projesi
 
   
 
-[İstinye Üniversitesi](https://www.istinye.edu.tr/)
+[Üniversitemizin sayfasına gitmek için tıklayınız.](https://www.istinye.edu.tr/)
+![İstinye Üniversitesi](https://upload.wikimedia.org/wikipedia/commons/d/d9/%C4%B0stinye_%C3%9Cniversitesi_logo.svg)
 
   
 
@@ -56,8 +58,6 @@ tasarlanmış sayfaları içerir.
 - Flutter SDK (sürüm 3.24.5)
 
 - Dart SDK (sürüm 3.5.4)
-
-- 
 
   
 
@@ -124,10 +124,8 @@ lib/
   
 
 ## Ekran Görüntüleri
-
-[Uygulama ekran görüntüleri buraya eklenecek]
-
   
+<table> <tr> <td><img src="https://i.imgur.com/5shEMQX.png" width="1500" /></td> <td><img src="https://i.imgur.com/Y0wQSjR.png" width="1500" /></td> <td><img src="https://i.imgur.com/n8lhPJQ.png" width="1500" /></td> <td><img src="https://i.imgur.com/R2mip5E.png" width="1500" /></td> </tr> </table>
 
 ## Projeye Katkı Sağlama
 
