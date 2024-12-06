@@ -2,7 +2,7 @@
 
   
 
-[İstinye Üniversitesi](https://www.unitededucation.com/linklogoch/istinye-university-logo.png)
+[İstinye Üniversitesi](https://www.istinye.edu.tr/)
 
   
 
