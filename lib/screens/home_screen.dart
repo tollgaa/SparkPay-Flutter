@@ -160,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   _buildExpenseCard('Netflix', '₺ 150.00', Colors.red, Icons.movie),
                   _buildExpenseCard('Spotify', '₺ 49.99', Colors.green, Icons.music_note),
-                  _buildExpenseCard('Şok Beylerbeyi Şube', '₺ 89.75', Colors.blue, Icons.store),
+                  _buildExpenseCard('Şok Beylerbeyi Şube', '₺ 1250.24', Colors.blue, Icons.store),
                 ],
               ),
             ],

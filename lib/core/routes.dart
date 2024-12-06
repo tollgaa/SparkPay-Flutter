@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:sparkpay/screens/currency_screen.dart';  // CurrencyScreen doğru import edilmeli
+import 'package:sparkpay/screens/currency_screen.dart';
 import 'package:sparkpay/screens/profile_screen.dart';
 import 'package:sparkpay/screens/search_screen.dart';
 import '../screens/loading_screen.dart';
@@ -23,7 +23,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: '/currency',
-      builder: (context, state) => const CurrencyScreen(), // CurrencyScreen olarak düzeltilmeli
+      builder: (context, state) => const CurrencyScreen(),
     ),
     GoRoute(
       path: '/search',

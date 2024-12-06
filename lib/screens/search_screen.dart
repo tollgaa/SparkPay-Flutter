@@ -29,7 +29,7 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
           ),
-          // Diğer içerikler
+          
           Expanded(
             child: const Center(
               child: Text("Aradığınız içerik buraya gelecektir."),
