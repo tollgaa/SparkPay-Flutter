@@ -25,14 +25,14 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(height: 20),
             Center(
               child: const Text(
-                'Tolga', // Buraya dinamik bir kullanıcı adı ekleyebilirsiniz.
+                'Tolga', // Kullanıcı Adı
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 10),
             Center(
               child: const Text(
-                'tolga@istinye.edu.tr', // Buraya kullanıcı e-posta adresi ekleyebilirsiniz.
+                'tolga@istinye.edu.tr', // E-posta
                 style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
             ),

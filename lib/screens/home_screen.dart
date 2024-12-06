@@ -1,13 +1,6 @@
-//Ana ekran burada yapılacak.
-
-import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:sparkpay/core/constants.dart';
-import 'package:sparkpay/core/routes.dart';
-import 'package:sparkpay/screens/currency_screen.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,8 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ArkaPlanRengi, // Arka plan rengis
-      // AppBar
+      backgroundColor: ArkaPlanRengi,
       appBar: AppBar(
         title: const Text('SparkPay'),
         actions: [
@@ -27,39 +19,33 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-
-      // Drawer (Yan Menü)
       drawer: Drawer(
         child: Column(
           children: [
-            // Drawer Header
             SizedBox(
               height: 200,
-              //color: Colors.blue,
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    CupertinoIcons.person_circle,
-                    size: 80,
-                    color: Color.fromARGB(255, 16, 24, 48),
+                  ClipOval(
+                    child: Image.asset(
+                      'assets/images/profilepicture.jpeg',
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    '',
+                  const SizedBox(height: 10),
+                  const Text(
+                    'Tolga',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 18,
                     ),
                   ),
                 ],
               ),
             ),
-
-
-
-
-            // Menü öğeleri
             ListTile(
               leading: const Icon(CupertinoIcons.home),
               title: const Text('Ana Sayfa'),
@@ -84,47 +70,156 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-
-
-
-// Ana içerik
-body: Center(
-  child: Column(
-    mainAxisAlignment: MainAxisAlignment.center, // Ortalamak için
-    children: [
-      SizedBox(
-        width: 150,  // Boyutunu istediğiniz gibi ayarlayabilirsiniz
-        height: 150, // Boyutunu istediğiniz gibi ayarlayabilirsiniz
-        child: DotLottieLoader.fromAsset(
-          "motions/homelogo1.lottie",
-          frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
-            if (dotlottie != null) {
-              return Lottie.memory(dotlottie.animations.values.single);
-            } else {
-              return Container();
-            }
-          },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Text(
+                "SparkPay'e Hoş Geldiniz!",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 40),
+              Container(
+                padding: const EdgeInsets.all(20),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      offset: Offset(0, 4),
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Hesap Bakiyeniz",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "₺ 5,000.00",
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _buildActionButton(
+                          icon: Icons.send,
+                          label: "Para Gönder",
+                        ),
+                        _buildActionButton(
+                          icon: Icons.request_page,
+                          label: "Para İste",
+                        ),
+                        _buildActionButton(
+                          icon: Icons.payment,
+                          label: "Ödemeler",
+                        ),
+                        _buildActionButton(
+                          icon: Icons.receipt,
+                          label: "Faturalar",
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+              const Text(
+                "Son Harcamalar",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Column(
+                children: [
+                  _buildExpenseCard('Netflix', '₺ 150.00', Colors.red, Icons.movie),
+                  _buildExpenseCard('Spotify', '₺ 49.99', Colors.green, Icons.music_note),
+                  _buildExpenseCard('Şok Beylerbeyi Şube', '₺ 89.75', Colors.blue, Icons.store),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-      const SizedBox(height: 20), // Animasyon ile yazı arasında boşluk
-      const Text(
-        "SparkPay'e Hoş Geldiniz!", // Burada istediğiniz yazıyı yazabilirsiniz
-        style: TextStyle(
-          fontSize: 18,  // Yazı boyutunu ayarlayabilirsiniz
-          fontWeight: FontWeight.bold,  // Yazı kalınlığı
-          color: Colors.black,  // Yazı rengini ayarlayabilirsiniz
+      bottomNavigationBar: const BottomMenu(),
+    );
+  }
+
+  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 10),
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        leading: CircleAvatar(
+          backgroundColor: color,
+          child: Icon(
+            icon,
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        subtitle: Text(
+          "Harcama Tutarı: $amount",
+          style: const TextStyle(fontSize: 14),
         ),
       ),
-    ],
-  ),
-),
+    );
+  }
 
-
-
-
- // Alt navigasyon çubuğu
-      bottomNavigationBar: const BottomMenu()
+  Widget _buildActionButton({required IconData icon, required String label}) {
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 25,
+          backgroundColor: Colors.grey[200],
+          child: Icon(
+            icon,
+            size: 30,
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }
-

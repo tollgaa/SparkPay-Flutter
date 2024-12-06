@@ -6,25 +6,24 @@ class CurrencyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Örnek döviz verileri (statik)
+    
     final List<Map<String, String>> currencies = [
-      {'currency': 'USD', 'rate': '34.47'},
-      {'currency': 'EUR', 'rate': '36.81'},
-      {'currency': 'GBP', 'rate': '44.37'},
-      {'currency': 'JPY', 'rate': '0.23'},
+      {'currency': 'USD', 'rate': '34.47', 'icon': 'usd'},
+      {'currency': 'EUR', 'rate': '36.81', 'icon': 'eur'},
+      {'currency': 'GBP', 'rate': '44.37', 'icon': 'gbp'},
+      {'currency': 'JPY', 'rate': '0.23', 'icon': 'jpy'},
     ];
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Döviz Kurları (Son Güncellenme: 02:22  6/12/2024 )"),
       ),
-      body: CurrencyList(currencies: currencies), // CurrencyList widget'ını çağırıyoruz
-      bottomNavigationBar: const BottomMenu(), // Alt menüyü ekliyoruz
+      body: CurrencyList(currencies: currencies),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }
 
-// Döviz verilerini listelemek için kullanılan widget
 class CurrencyList extends StatelessWidget {
   final List<Map<String, String>> currencies;
 
@@ -36,12 +35,31 @@ class CurrencyList extends StatelessWidget {
       itemCount: currencies.length,
       itemBuilder: (context, index) {
         final currency = currencies[index];
+        Icon? currencyIcon;
+
+        switch (currency['icon']) {
+          case 'usd':
+            currencyIcon = const Icon(Icons.attach_money);
+            break;
+          case 'eur':
+            currencyIcon = const Icon(Icons.euro_symbol);
+            break;
+          case 'gbp':
+            currencyIcon = const Icon(Icons.attach_money);
+            break;
+          case 'jpy':
+            currencyIcon = const Icon(Icons.money); 
+            break;
+          default:
+            currencyIcon = const Icon(Icons.monetization_on);
+        }
+
         return Card(
           margin: const EdgeInsets.all(10),
           child: ListTile(
             title: Text(currency['currency']!),
             subtitle: Text('Kur: ${currency['rate']} TL'),
-            leading: const Icon(Icons.attach_money),
+            leading: currencyIcon,
           ),
         );
       },

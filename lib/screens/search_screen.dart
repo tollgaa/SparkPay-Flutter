@@ -12,7 +12,7 @@ class SearchScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Sabit arama çubuğu
+          // Arama Çubuğumuz
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             color: Colors.white,
