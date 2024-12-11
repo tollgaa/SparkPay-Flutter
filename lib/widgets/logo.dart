@@ -1,1 +1,0 @@
-//Kendimize özelleştirdiğimiz widgetlar
