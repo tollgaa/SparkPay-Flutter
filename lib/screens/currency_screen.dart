@@ -32,7 +32,6 @@ class CurrencyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      
       itemCount: currencies.length,
       itemBuilder: (context, index) {
         final currency = currencies[index];
