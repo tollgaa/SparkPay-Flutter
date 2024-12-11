@@ -52,7 +52,7 @@ class CurrencyList extends StatelessWidget {
             break;
           default:
             currencyIcon = const Icon(Icons.monetization_on);
-        }
+        }  
 
         return Card(
           margin: const EdgeInsets.all(10),
