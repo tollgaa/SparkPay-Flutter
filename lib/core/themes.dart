@@ -1,1 +1,0 @@
-//Temalar, renkler vb. burada bulunuyor.

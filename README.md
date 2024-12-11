@@ -38,6 +38,15 @@ tasarlanmış sayfaları içerir.
 
 - Ödemeler
 
+## Gelecek Planları
+
+- Butonların işlevli hale getirilmesi.
+
+- Arama Ekranın geliştirilmesi, işlevli hale getirilmesi
+
+- Bize Ulaşın sayfasının eklenmesi
+
+
   
 
 ## Kullanılan Teknolojiler

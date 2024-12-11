@@ -3,7 +3,7 @@ import 'package:sparkpay/widgets/bottom_menu.dart';
 
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen({super.key});
-
+    
   @override
   Widget build(BuildContext context) {
     
@@ -32,6 +32,7 @@ class CurrencyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      
       itemCount: currencies.length,
       itemBuilder: (context, index) {
         final currency = currencies[index];
