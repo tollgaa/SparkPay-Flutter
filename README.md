@@ -38,15 +38,6 @@ tasarlanmış sayfaları içerir.
 
 - Ödemeler
 
-## Gelecek Planları
-
-- Butonların işlevli hale getirilmesi.
-
-- Arama Ekranın geliştirilmesi, işlevli hale getirilmesi
-
-- Bize Ulaşın sayfasının eklenmesi
-
-
   
 
 ## Kullanılan Teknolojiler
@@ -134,7 +125,9 @@ lib/
 
 ## Ekran Görüntüleri
   
-<table> <tr> <td><img src="https://i.imgur.com/5shEMQX.png" width="1500" /></td> <td><img src="https://i.imgur.com/Y0wQSjR.png" width="1500" /></td> <td><img src="https://i.imgur.com/n8lhPJQ.png" width="1500" /></td> <td><img src="https://i.imgur.com/R2mip5E.png" width="1500" /></td> </tr> </table>
+<table> <tr> <td><img src="https://i.imgur.com/bPa5MNO.png" 
+width="1500" /></td> <td><img src="https://i.imgur.com/KxQ2dsY.png" 
+width="1500" /></td> <td><img src="https://i.imgur.com/Y0wQSjR.png" width="1500" /></td> <td><img src="https://i.imgur.com/n8lhPJQ.png" width="1500" /></td> <td><img src="https://i.imgur.com/R2mip5E.png" width="1500" /></td> </tr> </table>
 
 ## Projeye Katkı Sağlama
 
