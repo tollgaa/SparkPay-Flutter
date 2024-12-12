@@ -1,7 +1,39 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sparkpay/core/constants.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
+
+void main() {
+  final GoRouter _router = GoRouter(
+    initialLocation: '/',
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => const HomeScreen(),
+      ),
+      // Diğer sayfalar için rotaları buraya ekleyebilirsiniz
+    ],
+  );
+
+  runApp(MyApp(router: _router));
+}
+
+class MyApp extends StatelessWidget {
+  final GoRouter router;
+  const MyApp({super.key, required this.router});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: router,
+      title: 'SparkPay',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+    );
+  }
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,7 +47,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.bell),
-            onPressed: () {}, 
+            onPressed: () {
+              // Bir sayfaya yönlendirme işlemi
+              context.go('/notifications');
+            },
           ),
         ],
       ),
@@ -50,21 +85,21 @@ class HomeScreen extends StatelessWidget {
               leading: const Icon(CupertinoIcons.home),
               title: const Text('Ana Sayfa'),
               onTap: () {
-                Navigator.pop(context);
+                context.go('/');
               },
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.settings),
               title: const Text('Ayarlar'),
               onTap: () {
-                Navigator.pop(context);
+                context.go('/settings');
               },
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.person_2),
               title: const Text('Bize Ulaşın'),
               onTap: () {
-                Navigator.pop(context);
+                context.go('/contact');
               },
             ),
           ],
