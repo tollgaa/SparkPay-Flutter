@@ -124,7 +124,7 @@ lib/
     ├── routes.dart
     └── storage.dart
 
-
+```
   
 
 ## Ekran Görüntüleri
