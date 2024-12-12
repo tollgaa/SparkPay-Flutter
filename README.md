@@ -108,18 +108,22 @@ flutter  run
 ```
 
 lib/
+├── modeller/
+├── ekranlar/
+│   ├── currency_screen.dart # Döviz Sayfası 
+│   ├── home_screen.dart     # Ana Sayfa
+│   ├── loading_screen.dart  # Giriş Sayfası
+│   ├── profile_screen.dart  # Profil Sayfası
+│   └── search_screen.dart   # Arama Sayfası
+├── widgets/
+│   └── bottom_menu.dart # Alt Menü
+├── servisler/
+│   └── api.dart
+└── yardımcılar/
+    ├── constants.dart
+    ├── routes.dart
+    └── storage.dart
 
-├── modeller/ # Veri modelleri
-
-├── ekranlar/ # Uygulama ekranları
-
-├── widgets/ # Tekrar kullanılabilir arayüz öğeleri
-
-├── servisler/ # API servisleri
-
-└── yardımcılar/ # Yardımcı fonksiyonlar
-
-```
 
   
 
