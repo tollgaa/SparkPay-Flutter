@@ -12,7 +12,6 @@ void main() {
         path: '/',
         builder: (context, state) => const HomeScreen(),
       ),
-      // Diğer sayfalar için rotaları buraya ekleyebilirsiniz
     ],
   );
 
@@ -48,7 +47,6 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(CupertinoIcons.bell),
             onPressed: () {
-              // Bir sayfaya yönlendirme işlemi
               context.go('/notifications');
             },
           ),
