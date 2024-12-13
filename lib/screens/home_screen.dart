@@ -4,19 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:sparkpay/core/constants.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
 
-void main() {
-  final GoRouter _router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const HomeScreen(),
-      ),
-    ],
-  );
-
-  runApp(MyApp(router: _router));
-}
 
 class MyApp extends StatelessWidget {
   final GoRouter router;

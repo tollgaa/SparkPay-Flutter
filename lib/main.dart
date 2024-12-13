@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routerConfig: router,  
-      debugShowCheckedModeBanner: false,  
     );
   }
 }
