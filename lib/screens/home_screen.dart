@@ -3,23 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sparkpay/core/constants.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
-
-
-class MyApp extends StatelessWidget {
-  final GoRouter router;
-  const MyApp({super.key, required this.router});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
-      title: 'SparkPay',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-    );
-  }
-}
+import 'package:google_fonts/google_fonts.dart';  // Google Fonts'u import ettik
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -69,23 +53,17 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(CupertinoIcons.home),
               title: const Text('Ana Sayfa'),
-              onTap: () {
-                context.go('/');
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.settings),
               title: const Text('Ayarlar'),
-              onTap: () {
-                context.go('/settings');
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(CupertinoIcons.person_2),
               title: const Text('Bize Ulaşın'),
-              onTap: () {
-                context.go('/contact');
-              },
+              onTap: () {},
             ),
           ],
         ),
@@ -136,6 +114,7 @@ class HomeScreen extends StatelessWidget {
                     const Text(
                       "₺ 5,000.00",
                       style: TextStyle(
+                        fontFamily: 'Lexend Giga', // Lexend Giga fontu burada kullanılıyor
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
@@ -209,7 +188,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: const TextStyle(
+          style: GoogleFonts.oswald(  // Oswald fontu burada Google Fonts'tan uygulanıyor
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

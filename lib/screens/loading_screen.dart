@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sparkpay/core/constants.dart';
-import 'package:sparkpay/core/routes.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -14,10 +13,8 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: KilitEkranArkaPlanRengi, // Arka plan rengi
       body: SizedBox.expand(
-        //width: double.infinity,
         child: Column(
           children: [
-            // Logo bölümü
             Expanded(
               child: SizedBox(
                 width: 150,
@@ -28,41 +25,31 @@ class LoadingScreen extends StatelessWidget {
                 ),
               ),
             ),
-            
-            
-
-          
-          
-            
-          const Text("SparkPay Hesabınıza Giriş Yapmak İçin Tıklayın!",  
-           style: TextStyle(
-          fontSize: 20,
-        fontWeight: FontWeight.bold,  
-        color: Color.fromARGB(255, 255, 255, 255),
-      ),
-    ),
-
-            //Boşluk bırakmak için
+            const Text(
+              "SparkPay Hesabınıza Giriş Yapmak İçin Tıklayın!",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ),
+            ),
             const SizedBox(height: 150),
-            
-            
-                InkWell(
-                  onTap: ()=>context.go("/home"),
-                  child: SizedBox(
-                    width:275,
-                    child: DotLottieLoader.fromAsset(
-                      "motions/lockscreen.lottie",
-                      frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+            InkWell(
+              onTap: () => context.go("/home"),
+              child: SizedBox(
+                width: 275,
+                child: DotLottieLoader.fromAsset(
+                  "motions/lockscreen.lottie",
+                  frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
                     if (dotlottie != null) {
                       return Lottie.memory(dotlottie.animations.values.single);
                     } else {
                       return Container();
                     }
-                                  }),
-                  ),
+                  },
                 ),
-
-            //Boşluk bırakmak için
+              ),
+            ),
             const SizedBox(height: 20),
           ],
         ),

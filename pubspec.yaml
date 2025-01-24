@@ -15,7 +15,7 @@ dependencies:
   go_router: ^14.6.1
   lottie: ^3.1.3
   shared_preferences: ^2.3.3
-
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +29,11 @@ flutter:
     - assets/icons/
     - assets/languages/
     - assets/motions/
+    - assets/fonts/
+  fonts:
+    - family: Lexend Giga
+      fonts:
+        - asset: assets/fonts/LexendGiga-VariableFont_wght.ttf
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-VariableFont_wght.ttf

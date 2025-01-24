@@ -8,7 +8,13 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Arama Ekranı'),
+        title: const Text(
+          'Arama Ekranı',
+          style: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Montserrat',
+          ),
+        ),
       ),
       body: Column(
         children: [

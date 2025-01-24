@@ -8,7 +8,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profilim'),
+        title: const Text(
+          'Profilim',
+          style: TextStyle(fontFamily: 'Montserrat'), // Montserrat fontu
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,43 +29,56 @@ class ProfileScreen extends StatelessWidget {
             Center(
               child: const Text(
                 'Tolga', // Kullanıcı Adı
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lexend Giga', // Lexend Giga fontu
+                ),
               ),
             ),
             const SizedBox(height: 10),
             Center(
               child: const Text(
                 'tolga@istinye.edu.tr', // E-posta
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.grey,
+                  fontFamily: 'Montserrat', // Montserrat fontu
+                ),
               ),
             ),
             const SizedBox(height: 30),
-             // Ayarlar Butonu
+            // Ayarlar Butonu
             ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Ayarlar'),
+              title: const Text(
+                'Ayarlar',
+                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+              ),
               onTap: () {
                 // Ayarlar sayfasına yönlendirme
               },
             ),
-
             const Divider(),
-
             // Profil Düzenleme Butonu
             ListTile(
               leading: const Icon(Icons.help_sharp),
-              title: const Text('Teknik Destek'),
+              title: const Text(
+                'Teknik Destek',
+                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+              ),
               onTap: () {
                 // Profil düzenleme sayfasına yönlendirme
               },
             ),
-            
-           
             const Divider(),
             // Çıkış Yapma Butonu
             ListTile(
               leading: const Icon(Icons.exit_to_app),
-              title: const Text('Çıkış Yap'),
+              title: const Text(
+                'Çıkış Yap',
+                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+              ),
               onTap: () {
                 // Çıkış işlemi yapma
               },

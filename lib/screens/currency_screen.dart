@@ -3,10 +3,9 @@ import 'package:sparkpay/widgets/bottom_menu.dart';
 
 class CurrencyScreen extends StatelessWidget {
   const CurrencyScreen({super.key});
-    
+
   @override
   Widget build(BuildContext context) {
-    
     final List<Map<String, String>> currencies = [
       {'currency': 'USD', 'rate': '34.47', 'icon': 'usd'},
       {'currency': 'EUR', 'rate': '36.81', 'icon': 'eur'},
@@ -16,7 +15,10 @@ class CurrencyScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Döviz Kurları (Son Güncellenme: 02:22  6/12/2024 )"),
+        title: const Text(
+          "Döviz Kurları (Son Güncellenme: 02:22  6/12/2024 )",
+          style: TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Montserrat'),
+        ),
       ),
       body: CurrencyList(currencies: currencies),
       bottomNavigationBar: const BottomMenu(),
@@ -48,17 +50,29 @@ class CurrencyList extends StatelessWidget {
             currencyIcon = const Icon(Icons.attach_money);
             break;
           case 'jpy':
-            currencyIcon = const Icon(Icons.money); 
+            currencyIcon = const Icon(Icons.money);
             break;
           default:
             currencyIcon = const Icon(Icons.monetization_on);
-        }  
+        }
 
         return Card(
           margin: const EdgeInsets.all(10),
           child: ListTile(
-            title: Text(currency['currency']!),
-            subtitle: Text('Kur: ${currency['rate']} TL'),
+            title: Text(
+              currency['currency']!,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Montserrat',
+              ),
+            ),
+            subtitle: Text(
+              'Kur: ${currency['rate']} TL',
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Montserrat',
+              ),
+            ),
             leading: currencyIcon,
           ),
         );
