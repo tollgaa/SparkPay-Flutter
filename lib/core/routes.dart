@@ -2,16 +2,16 @@ import 'package:go_router/go_router.dart';
 import 'package:sparkpay/screens/currency_screen.dart';
 import 'package:sparkpay/screens/profile_screen.dart';
 import 'package:sparkpay/screens/search_screen.dart';
-import '../screens/loading_screen.dart';
+import '../screens/register_screen.dart';
 import '../screens/home_screen.dart';
 
-// Router yapılandırması
+
 final router = GoRouter(
-  initialLocation: '/',  // Başlangıç rotası
+  initialLocation: '/register', 
   routes: [
     GoRoute(
-      path: '/',
-      builder: (context, state) => const LoadingScreen(),
+      path: '/register',
+      builder: (context, state) => const RegisterScreen(),
     ),
     GoRoute(
       path: '/home',

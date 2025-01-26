@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Profilim',
-          style: TextStyle(fontFamily: 'Montserrat'), // Montserrat fontu
+          style: TextStyle(fontFamily: 'Montserrat'),
         ),
       ),
       body: Padding(
@@ -18,69 +19,65 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Profil Resmi ve Kullanıcı Adı
             Center(
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('images/profilepicture.jpeg'), // Profil resmi
+                backgroundImage: AssetImage('images/profilepicture.jpeg'),
               ),
             ),
             const SizedBox(height: 20),
             Center(
               child: const Text(
-                'Tolga', // Kullanıcı Adı
+                'Tolga',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Lexend Giga', // Lexend Giga fontu
+                  fontFamily: 'Lexend Giga',
                 ),
               ),
             ),
             const SizedBox(height: 10),
             Center(
               child: const Text(
-                'tolga@istinye.edu.tr', // E-posta
+                'tolga@istinye.edu.tr',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.grey,
-                  fontFamily: 'Montserrat', // Montserrat fontu
+                  fontFamily: 'Montserrat',
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            // Ayarlar Butonu
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text(
                 'Ayarlar',
-                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+                style: TextStyle(fontFamily: 'Oswald'),
               ),
               onTap: () {
-                // Ayarlar sayfasına yönlendirme
+                // Ayarlar sayfası eklendiğinde buraya yönlendirme eklenebilir
               },
             ),
             const Divider(),
-            // Profil Düzenleme Butonu
             ListTile(
               leading: const Icon(Icons.help_sharp),
               title: const Text(
                 'Teknik Destek',
-                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+                style: TextStyle(fontFamily: 'Oswald'),
               ),
               onTap: () {
-                // Profil düzenleme sayfasına yönlendirme
+                // Teknik destek sayfası eklendiğinde buraya yönlendirme eklenebilir
               },
             ),
             const Divider(),
-            // Çıkış Yapma Butonu
             ListTile(
               leading: const Icon(Icons.exit_to_app),
               title: const Text(
                 'Çıkış Yap',
-                style: TextStyle(fontFamily: 'Oswald'), // Oswald fontu
+                style: TextStyle(fontFamily: 'Oswald'),
               ),
               onTap: () {
-                // Çıkış işlemi yapma
+                context.go('/register');
               },
             ),
           ],

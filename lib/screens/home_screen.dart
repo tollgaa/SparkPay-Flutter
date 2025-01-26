@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sparkpay/core/constants.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
-import 'package:google_fonts/google_fonts.dart';  // Google Fonts'u import ettik
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -114,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                     const Text(
                       "₺ 5,000.00",
                       style: TextStyle(
-                        fontFamily: 'Lexend Giga', // Lexend Giga fontu burada kullanılıyor
+                        fontFamily: 'Lexend Giga',
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
@@ -188,7 +188,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: GoogleFonts.oswald(  // Oswald fontu burada Google Fonts'tan uygulanıyor
+          style: GoogleFonts.oswald(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
