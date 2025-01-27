@@ -34,13 +34,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF121212), // Arka plan rengi (dark mode)
+      backgroundColor: const Color(0xFF121212),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo
               SizedBox(
                 width: 150,
                 height: 150,
@@ -54,10 +53,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 width: 300,
                 child: TextField(
                   controller: _emailController,
-                  style: const TextStyle(color: Colors.white), // Yazı rengi beyaz
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     hintText: "E-Posta",
-                    hintStyle: const TextStyle(color: Colors.white54), // Hint yazı rengi
+                    hintStyle: const TextStyle(color: Colors.white54),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -71,10 +70,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: TextField(
                   controller: _passwordController,
                   obscureText: true,
-                  style: const TextStyle(color: Colors.white), // Yazı rengi beyaz
+                  style: const TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     hintText: "Şifre",
-                    hintStyle: const TextStyle(color: Colors.white54), // Hint yazı rengi
+                    hintStyle: const TextStyle(color: Colors.white54),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

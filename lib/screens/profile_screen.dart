@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sparkpay/widgets/bottom_menu.dart';
+import 'package:provider/provider.dart';
+import '../core/theme_provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Profilim',
-          style: TextStyle(fontFamily: 'Montserrat'),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
+        backgroundColor: themeProvider.isDarkMode ? Colors.black : Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -32,7 +37,7 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Lexend Giga',
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -43,47 +48,52 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.grey,
-                  fontFamily: 'Montserrat',
                 ),
               ),
             ),
             const SizedBox(height: 30),
             ListTile(
-              leading: const Icon(Icons.settings),
+              leading: Icon(
+                Icons.settings,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
               title: const Text(
                 'Ayarlar',
-                style: TextStyle(fontFamily: 'Oswald'),
+                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
               ),
-              onTap: () {
-                // Ayarlar sayfası eklendiğinde buraya yönlendirme eklenebilir
-              },
+              tileColor: Colors.white,
+              onTap: () {},
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.help_sharp),
+              leading: Icon(
+                Icons.help_sharp,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
               title: const Text(
                 'Teknik Destek',
-                style: TextStyle(fontFamily: 'Oswald'),
+                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
               ),
-              onTap: () {
-                // Teknik destek sayfası eklendiğinde buraya yönlendirme eklenebilir
-              },
+              tileColor: Colors.white,
+              onTap: () {},
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.exit_to_app),
+              leading: Icon(
+                Icons.exit_to_app,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
               title: const Text(
                 'Çıkış Yap',
-                style: TextStyle(fontFamily: 'Oswald'),
+                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
               ),
+              tileColor: Colors.white,
               onTap: () {
-                context.go('/register');
               },
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const BottomMenu(),
     );
   }
 }

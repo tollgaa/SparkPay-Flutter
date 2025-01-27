@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'core/theme_provider.dart';
 import 'core/routes.dart';
-
+import 'core/themes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();  
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +18,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return MaterialApp.router(
-      title: 'Flutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      routerConfig: router,  
+      title: 'SparkPay',
+      theme: themeProvider.isDarkMode ? darkTheme : lightTheme,
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
     );
   }
 }

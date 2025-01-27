@@ -1,27 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:sparkpay/core/constants.dart';
-import 'package:sparkpay/widgets/bottom_menu.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../core/theme_provider.dart';
+import '../widgets/bottom_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
-      backgroundColor: ArkaPlanRengi,
       appBar: AppBar(
         title: const Text('SparkPay'),
-        actions: [
-          IconButton(
-            icon: const Icon(CupertinoIcons.bell),
-            onPressed: () {
-              context.go('/notifications');
-            },
-          ),
-        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -65,6 +57,17 @@ class HomeScreen extends StatelessWidget {
               title: const Text('Bize Ulaşın'),
               onTap: () {},
             ),
+            ListTile(
+              leading: Icon(themeProvider.isDarkMode
+                  ? Icons.light_mode
+                  : Icons.dark_mode),
+              title: Text(themeProvider.isDarkMode
+                  ? 'Gündüz Modu'
+                  : 'Gece Modu'),
+              onTap: () {
+                themeProvider.toggleTheme();
+              },
+            ),
           ],
         ),
       ),
@@ -76,12 +79,12 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Text(
+              Text(
                 "SparkPay'e Hoş Geldiniz!",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 40),
@@ -89,11 +92,13 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: themeProvider.isDarkMode ? Colors.black : Colors.white,
                   borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white12
+                          : Colors.black26,
                       offset: Offset(0, 4),
                       blurRadius: 4,
                     ),
@@ -102,12 +107,12 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       "Hesap Bakiyeniz",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -146,12 +151,12 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              const Text(
+              Text(
                 "Son Harcamalar",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
@@ -188,7 +193,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: GoogleFonts.oswald(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
