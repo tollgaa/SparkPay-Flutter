@@ -15,15 +15,15 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('SparkPay'),
         iconTheme: IconThemeData(
-          color: themeProvider.isDarkMode ? Colors.white : Colors.black, // Menü ikonu rengi
+          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
         ),
         backgroundColor:
-            themeProvider.isDarkMode ? Colors.black : Colors.white, // AppBar arka planı
+            themeProvider.isDarkMode ? Colors.black : Colors.white,
       ),
       drawer: Drawer(
         backgroundColor: themeProvider.isDarkMode
-            ? Colors.grey[900] // Gece modu arka plan
-            : Colors.white,    // Gündüz modu arka plan
+            ? Colors.grey[900]
+            : Colors.white,
         child: Column(
           children: [
             SizedBox(

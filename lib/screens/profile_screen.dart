@@ -14,7 +14,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Ana Sayfa',
+          'Profilim',
           style: TextStyle(
             fontFamily: 'Playwrite India',
             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
