@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../core/theme_provider.dart';
 import '../widgets/bottom_menu.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -15,8 +14,16 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('SparkPay'),
+        iconTheme: IconThemeData(
+          color: themeProvider.isDarkMode ? Colors.white : Colors.black, // Menü ikonu rengi
+        ),
+        backgroundColor:
+            themeProvider.isDarkMode ? Colors.black : Colors.white, // AppBar arka planı
       ),
       drawer: Drawer(
+        backgroundColor: themeProvider.isDarkMode
+            ? Colors.grey[900] // Gece modu arka plan
+            : Colors.white,    // Gündüz modu arka plan
         child: Column(
           children: [
             SizedBox(
@@ -33,10 +40,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
+                  Text(
                     'Tolga',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: themeProvider.isDarkMode
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 18,
                     ),
                   ),
@@ -44,27 +53,59 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.home),
-              title: const Text('Ana Sayfa'),
+              leading: Icon(
+                CupertinoIcons.home,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
+              title: Text(
+                'Ana Sayfa',
+                style: TextStyle(
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.settings),
-              title: const Text('Ayarlar'),
+              leading: Icon(
+                CupertinoIcons.settings,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
+              title: Text(
+                'Ayarlar',
+                style: TextStyle(
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.person_2),
-              title: const Text('Bize Ulaşın'),
+              leading: Icon(
+                CupertinoIcons.person_2,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
+              title: Text(
+                'Bize Ulaşın',
+                style: TextStyle(
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(themeProvider.isDarkMode
-                  ? Icons.light_mode
-                  : Icons.dark_mode),
-              title: Text(themeProvider.isDarkMode
-                  ? 'Gündüz Modu'
-                  : 'Gece Modu'),
+              leading: Icon(
+                themeProvider.isDarkMode
+                    ? Icons.light_mode
+                    : Icons.dark_mode,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
+              title: Text(
+                themeProvider.isDarkMode
+                    ? 'Gündüz Modu'
+                    : 'Gece Modu',
+                style: TextStyle(
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
               onTap: () {
                 themeProvider.toggleTheme();
               },
@@ -81,26 +122,29 @@ class HomeScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Text(
-                 "SparkPay'e Hoş Geldiniz!",
-                  style: TextStyle(
-                  fontSize: 18,
+                "SparkPay'e Hoş Geldin Tolga!",
+                style: TextStyle(
+                  fontFamily: 'Playwrite India',
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                    ),
-                  ),
+                ),
+              ),
               const SizedBox(height: 40),
               Container(
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: themeProvider.isDarkMode ? Colors.black : Colors.white,
+                  color: themeProvider.isDarkMode
+                      ? Colors.black
+                      : Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: themeProvider.isDarkMode
                           ? Colors.white12
                           : Colors.black26,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                       blurRadius: 4,
                     ),
                   ],
@@ -113,7 +157,9 @@ class HomeScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                        color: themeProvider.isDarkMode
+                            ? Colors.white
+                            : Colors.black,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -128,7 +174,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceEvenly,
                       children: [
                         _buildActionButton(
                           icon: Icons.send,
@@ -157,15 +204,24 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode
+                      ? Colors.white
+                      : Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
               Column(
                 children: [
-                  _buildExpenseCard('Netflix', '₺ 150.00', Colors.red, Icons.movie),
-                  _buildExpenseCard('Spotify', '₺ 49.99', Colors.green, Icons.music_note),
-                  _buildExpenseCard('Şok Beylerbeyi Şube', '₺ 1250.24', Colors.blue, Icons.store),
+                  _buildExpenseCard('Netflix', '₺ 150.00',
+                      Colors.red, Icons.movie, themeProvider),
+                  _buildExpenseCard('Spotify', '₺ 49.99',
+                      Colors.green, Icons.music_note, themeProvider),
+                  _buildExpenseCard(
+                      'Şok Beylerbeyi Şube',
+                      '₺ 1250.24',
+                      Colors.blue,
+                      Icons.store,
+                      themeProvider),
                 ],
               ),
             ],
@@ -176,10 +232,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon) {
+  Widget _buildExpenseCard(String title, String amount, Color color,
+      IconData icon, ThemeProvider themeProvider) {
     return Card(
       margin: const EdgeInsets.only(bottom: 10),
       elevation: 5,
+      color: themeProvider.isDarkMode
+          ? Colors.grey[850]
+          : Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
@@ -194,25 +254,35 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
+            color: themeProvider.isDarkMode
+                ? Colors.white
+                : Colors.black,
           ),
         ),
         subtitle: Text(
           "Harcama Tutarı: $amount",
-          style: const TextStyle(fontSize: 14),
+          style: TextStyle(
+            fontSize: 14,
+            color: themeProvider.isDarkMode
+                ? Colors.grey[400]
+                : Colors.black54,
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildActionButton({required IconData icon, required String label}) {
+  Widget _buildActionButton(
+      {required IconData icon, required String label}) {
     return Column(
       children: [
         CircleAvatar(
           radius: 25,
-          backgroundColor: const Color.fromARGB(255, 208, 208, 208),
+          backgroundColor:
+              const Color.fromARGB(255, 208, 208, 208),
           child: Icon(
             icon,
             size: 30,
@@ -222,7 +292,8 @@ class HomeScreen extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     );

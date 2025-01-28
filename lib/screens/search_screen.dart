@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
           'Arama Ekranı',
           style: TextStyle(
             fontWeight: FontWeight.w700,
-            fontFamily: 'Montserrat',
+            fontFamily: 'Playwrite India',
           ),
         ),
         backgroundColor: themeProvider.isDarkMode ? Colors.black : Colors.white,

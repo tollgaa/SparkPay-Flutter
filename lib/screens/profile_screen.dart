@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 import '../core/theme_provider.dart';
 import '../widgets/bottom_menu.dart';
 
@@ -12,14 +13,16 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Profilim',
+        title: Text(
+          'Ana Sayfa',
           style: TextStyle(
-            color: Colors.white,
+            fontFamily: 'Playwrite India',
+            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         backgroundColor: themeProvider.isDarkMode ? Colors.black : Colors.white,
       ),
+      backgroundColor: themeProvider.isDarkMode ? Colors.black : const Color(0xFFD0D0D0),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -33,18 +36,18 @@ class ProfileScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Center(
-              child: const Text(
+              child: Text(
                 'Tolga',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
             ),
             const SizedBox(height: 10),
             Center(
-              child: const Text(
+              child: Text(
                 'tolga@istinye.edu.tr',
                 style: TextStyle(
                   fontSize: 18,
@@ -62,13 +65,13 @@ class ProfileScreen extends StatelessWidget {
                 'Ayarlar',
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
                 ),
               ),
-              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
+              tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
               onTap: () {},
             ),
-            const Divider(),
+            const SizedBox(height: 10),
             ListTile(
               leading: Icon(
                 Icons.help_sharp,
@@ -78,13 +81,13 @@ class ProfileScreen extends StatelessWidget {
                 'Teknik Destek',
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
                 ),
               ),
-              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
+              tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
               onTap: () {},
             ),
-            const Divider(),
+            const SizedBox(height: 10),
             ListTile(
               leading: Icon(
                 Icons.exit_to_app,
@@ -94,11 +97,13 @@ class ProfileScreen extends StatelessWidget {
                 'Çıkış Yap',
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
                 ),
               ),
-              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
-              onTap: () {},
+              tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+              onTap: () {
+                context.go('/register');
+              },
             ),
           ],
         ),

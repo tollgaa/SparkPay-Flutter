@@ -17,7 +17,7 @@ class CurrencyScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Döviz Kurları (Son Güncellenme: 02:22  6/12/2024 )",
-          style: TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Montserrat'),
+          style: TextStyle(fontWeight: FontWeight.w700, fontFamily: 'Playwrite India',),
         ),
       ),
       body: CurrencyList(currencies: currencies),

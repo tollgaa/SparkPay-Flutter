@@ -7,9 +7,9 @@ const Color GunduzMetinRengi = Colors.black;
 const Color GunduzAppBarRengi = Colors.white;  
 
 
-const Color GeceArkaPlanRengi = Color.fromARGB(255, 18, 18, 18); // Darker background
+const Color GeceArkaPlanRengi = Color.fromARGB(255, 18, 18, 18);
 const Color GeceMetinRengi = Colors.white;
-const Color GeceAppBarRengi = Color.fromARGB(255, 33, 33, 33); // Darker app bar
+const Color GeceAppBarRengi = Color.fromARGB(255, 33, 33, 33);
 
 
 const String fontFamily = 'Montserrat';
