@@ -139,14 +139,14 @@ https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067
     <td><img src="https://i.imgur.com/7wrHKRP.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/i9Y9YrK.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/ZNL11LX.png" width="1500" /></td>
-    <td><img src="https://imgur.com/YIVbhpQ" width="1500" /></td>
+    <td><img src="https://imgur.com/JmFx9Ba.png" width="1500" /></td>
   </tr>
   <tr>
     <td><img src="https://i.imgur.com/rOHYsYy.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/TbYEN6l.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/2B9d5C5.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/heXJ5Vf.png" width="1500" /></td>
-    <td><img src="https://imgur.com/DRORxvb" width="1500" /></td>
+    <td><img src="https://imgur.com/3rqrN3Y.png" width="1500" /></td>
 
   </tr>
 </table>
