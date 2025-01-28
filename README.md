@@ -15,10 +15,6 @@ para transferleri, hesap bakiyesi görüntüleme ve fatura ödeme gibi temel ban
 tasarlanmış sayfaları içerir.
 
 
-## Tanıtım Videosu
-
-https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067
-
 ## Ekibimiz
 
 -  **Danışman:**  
@@ -109,14 +105,13 @@ flutter  run
 ## Proje Yapısı
 
 ```
-
 lib/
 ├── modeller/
 ├── ekranlar/
 │   ├── currency_screen.dart # Döviz Sayfası 
 │   ├── home_screen.dart     # Ana Sayfa
-│   ├── loading_screen.dart  # Giriş Sayfası
-│   ├── profile_screen.dart  # Profil Sayfası
+│   ├── profile_screen.dart  # Profil Sayfası│
+│   ├── register_screen.dart  # Giriş Sayfası
 │   └── search_screen.dart   # Arama Sayfası
 ├── widgets/
 │   └── bottom_menu.dart # Alt Menü
@@ -125,16 +120,37 @@ lib/
 └── yardımcılar/
     ├── constants.dart
     ├── routes.dart
-    └── storage.dart
-
+    ├── storage.dart
+    ├── theme_provider.dart
+    └── themes.dart
 ```
+
+## Tanıtım Videosu
+
+https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067 
   
 
 ## Ekran Görüntüleri
   
-<table> <tr> <td><img src="https://i.imgur.com/bPa5MNO.png" 
-width="1500" /></td> <td><img src="https://i.imgur.com/KxQ2dsY.png" 
-width="1500" /></td> <td><img src="https://i.imgur.com/Y0wQSjR.png" width="1500" /></td> <td><img src="https://i.imgur.com/n8lhPJQ.png" width="1500" /></td> <td><img src="https://i.imgur.com/R2mip5E.png" width="1500" /></td> </tr> </table>
+<table>
+  <tr>
+    <td><img src="https://i.imgur.com/0S9vKnD.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/iTmsUFj.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/7wrHKRP.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/i9Y9YrK.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/ZNL11LX.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/96INRhO.png" width="1500" /></td>
+  </tr>
+  <tr>
+    <td><img src="https://i.imgur.com/rOHYsYy.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/TbYEN6l.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/2B9d5C5.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/heXJ5Vf.png" width="1500" /></td>
+    <td><img src="https://i.imgur.com/iVldvOQ.png" width="1500" /></td>
+
+  </tr>
+</table>
+
 
 ## Projeye Katkı Sağlama
 
