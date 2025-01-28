@@ -17,9 +17,7 @@ tasarlanmış sayfaları içerir.
 
 ## Tanıtım Videosu
 
-
-https://github.com/user-attachments/assets/9758692f-a2b3-498c-9cdb-1800382f4431
-  
+https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067
 
 ## Ekibimiz
 
