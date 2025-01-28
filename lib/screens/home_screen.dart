@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../core/theme_provider.dart';
 import '../widgets/bottom_menu.dart';
 
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -80,13 +81,13 @@ class HomeScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Text(
-                "SparkPay'e Hoş Geldiniz!",
-                style: TextStyle(
+                 "SparkPay'e Hoş Geldiniz!",
+                  style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                ),
-              ),
+                    ),
+                  ),
               const SizedBox(height: 40),
               Container(
                 padding: const EdgeInsets.all(20),

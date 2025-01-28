@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../core/theme_provider.dart';
+import '../widgets/bottom_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -57,11 +58,14 @@ class ProfileScreen extends StatelessWidget {
                 Icons.settings,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
-              title: const Text(
+              title: Text(
                 'Ayarlar',
-                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
+                style: TextStyle(
+                  fontFamily: 'Oswald',
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
-              tileColor: Colors.white,
+              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
               onTap: () {},
             ),
             const Divider(),
@@ -70,11 +74,14 @@ class ProfileScreen extends StatelessWidget {
                 Icons.help_sharp,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
-              title: const Text(
+              title: Text(
                 'Teknik Destek',
-                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
+                style: TextStyle(
+                  fontFamily: 'Oswald',
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
-              tileColor: Colors.white,
+              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
               onTap: () {},
             ),
             const Divider(),
@@ -83,17 +90,20 @@ class ProfileScreen extends StatelessWidget {
                 Icons.exit_to_app,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
-              title: const Text(
+              title: Text(
                 'Çıkış Yap',
-                style: TextStyle(fontFamily: 'Oswald', color: Colors.black),
+                style: TextStyle(
+                  fontFamily: 'Oswald',
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
-              tileColor: Colors.white,
-              onTap: () {
-              },
+              tileColor: themeProvider.isDarkMode ? Colors.black54 : Colors.white,
+              onTap: () {},
             ),
           ],
         ),
       ),
+      bottomNavigationBar: const BottomMenu(),
     );
   }
 }
