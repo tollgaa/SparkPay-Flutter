@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 
 
-const Color ArkaPlanRengi = Color.fromARGB(255, 210, 207, 207);
-const Color KilitEkranArkaPlanRengi = Color.fromARGB(255, 35, 47, 59);
-const Color GunduzMetinRengi = Colors.black;
-const Color GunduzAppBarRengi = Colors.white;
 const Color ArkaPlanRengi = Color.fromARGB(255, 210, 207, 207);  
 const Color KilitEkranArkaPlanRengi = Color.fromARGB(255, 35, 47, 59);  
 const Color GunduzMetinRengi = Colors.black;  
