@@ -14,6 +14,11 @@ SparkPay, modern kullanıcılar için tasarlanmış minimalist bir mobil bankac�
 para transferleri, hesap bakiyesi görüntüleme ve fatura ödeme gibi temel bankacılık işlemleri için
 tasarlanmış sayfaları içerir.
 
+
+## Tanıtım Videosu
+
+
+https://github.com/user-attachments/assets/9758692f-a2b3-498c-9cdb-1800382f4431
   
 
 ## Ekibimiz
