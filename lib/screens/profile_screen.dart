@@ -102,7 +102,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
               onTap: () {
-                context.go('/register');
+                context.go('/login');
               },
             ),
           ],

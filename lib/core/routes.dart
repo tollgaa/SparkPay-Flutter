@@ -2,16 +2,16 @@ import 'package:go_router/go_router.dart';
 import 'package:sparkpay/screens/currency_screen.dart';
 import 'package:sparkpay/screens/profile_screen.dart';
 import 'package:sparkpay/screens/search_screen.dart';
-import '../screens/register_screen.dart';
+import 'package:sparkpay/screens/register_screen.dart'; 
+import '../screens/login_screen.dart';
 import '../screens/home_screen.dart';
 
-
 final router = GoRouter(
-  initialLocation: '/register', 
+  initialLocation: '/login', 
   routes: [
     GoRoute(
-      path: '/register',
-      builder: (context, state) => const RegisterScreen(),
+      path: '/login',
+      builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
       path: '/home',
@@ -28,6 +28,10 @@ final router = GoRouter(
     GoRoute(
       path: '/search',
       builder: (context, state) => const SearchScreen(),
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegisterScreen(),
     ),
   ],
 );

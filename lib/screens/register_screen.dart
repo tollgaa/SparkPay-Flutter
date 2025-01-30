@@ -1,39 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
-
-  @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  String? _errorMessage;
-
-  void _login() {
-    const correctEmail = 'tolga@istinye.edu.tr';
-    const correctPassword = '259807';
-
-    if (_emailController.text == correctEmail &&
-        _passwordController.text == correctPassword) {
-      setState(() {
-        _errorMessage = null;
-      });
-      context.go("/home");
-    } else {
-      setState(() {
-        _errorMessage = "E-posta ya da şifre hatalı!";
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF121212),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            context.go('/login');
+          },
+        ),
+        title: const Text(
+          'Kayıt Ol',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       backgroundColor: const Color(0xFF121212),
       body: Center(
         child: SingleChildScrollView(
@@ -49,54 +35,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  controller: _emailController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "E-Posta",
-                    hintStyle: const TextStyle(color: Colors.white54),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    prefixIcon: const Icon(Icons.email, color: Colors.white),
-                  ),
-                ),
-              ),
+              _buildTextField("İsim", icon: Icons.person),
               const SizedBox(height: 16),
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    hintText: "Şifre",
-                    hintStyle: const TextStyle(color: Colors.white54),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    prefixIcon: const Icon(Icons.lock, color: Colors.white),
-                  ),
-                ),
-              ),
+              _buildTextField("Soyisim", icon: Icons.person),
               const SizedBox(height: 16),
-              if (_errorMessage != null)
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Text(
-                    _errorMessage!,
-                    style: const TextStyle(
-                      color: Colors.red,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
+              _buildTextField("E-posta", icon: Icons.email),
+              const SizedBox(height: 16),
+              _buildTextField("Şifre", icon: Icons.key),
+              const SizedBox(height: 16),
+              _buildTextField("Şifre Tekrar", icon: Icons.key),
+              const SizedBox(height: 16),
               SizedBox(
                 width: 300,
                 child: ElevatedButton(
-                  onPressed: _login,
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Kayıt Başarılı!"),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                    Future.delayed(const Duration(seconds: 2), () {
+                      context.go("/login");
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blueAccent,
                     shape: RoundedRectangleBorder(
@@ -105,13 +67,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     minimumSize: const Size(double.infinity, 50),
                   ),
                   child: const Text(
-                    
-                    "Giriş Yap",
-                    style: TextStyle(fontSize: 16, color:Colors.white),
+                    "Kayıt Ol",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(String hint, {required IconData icon}) {
+    return SizedBox(
+      width: 300,
+      child: TextField(
+        style: const TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.white54),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          prefixIcon: Icon(
+            icon,
+            color: Colors.white,
           ),
         ),
       ),
