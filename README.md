@@ -14,6 +14,8 @@ SparkPay, modern kullanıcılar için tasarlanmış minimalist bir mobil bankac�
 para transferleri, hesap bakiyesi görüntüleme ve fatura ödeme gibi temel bankacılık işlemleri için
 tasarlanmış sayfaları içerir.
 
+Projeyi demo olarak çalıştırmak için eposta olarak tolga@istinye.edu.tr ve şifre olarak 1234 kullanabilirsiniz.
+
 
 ## Ekibimiz
 
