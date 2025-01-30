@@ -113,11 +113,11 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               TextButton(
                 onPressed: () {
-                context.go("/register");
-              },
-                 child: const Text(
-                "Kayıt Ol",
-                style: TextStyle(color: Colors.blueAccent, fontSize: 14),
+                  context.go("/register");
+                },
+                child: const Text(
+                  "Kayıt Ol",
+                  style: TextStyle(color: Colors.blueAccent, fontSize: 14),
                 ),
               ),
             ],

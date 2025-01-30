@@ -41,9 +41,9 @@ class RegisterScreen extends StatelessWidget {
               const SizedBox(height: 16),
               _buildTextField("E-posta", icon: Icons.email),
               const SizedBox(height: 16),
-              _buildTextField("Şifre", icon: Icons.key),
+              _buildTextField("Şifre", icon: Icons.key, obscureText: true),
               const SizedBox(height: 16),
-              _buildTextField("Şifre Tekrar", icon: Icons.key),
+              _buildTextField("Şifre Tekrar", icon: Icons.key, obscureText: true),
               const SizedBox(height: 16),
               SizedBox(
                 width: 300,
@@ -79,10 +79,11 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String hint, {required IconData icon}) {
+  Widget _buildTextField(String hint, {required IconData icon, bool obscureText = false}) {
     return SizedBox(
       width: 300,
       child: TextField(
+        obscureText: obscureText,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           hintText: hint,
