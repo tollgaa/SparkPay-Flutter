@@ -110,8 +110,9 @@ lib/
 ├── ekranlar/
 │   ├── currency_screen.dart # Döviz Sayfası 
 │   ├── home_screen.dart     # Ana Sayfa
+│   ├── login_screen.dart     # Giriş Sayfa
 │   ├── profile_screen.dart  # Profil Sayfası│
-│   ├── register_screen.dart  # Giriş Sayfası
+│   ├── register_screen.dart  # Kayıt Sayfası
 │   └── search_screen.dart   # Arama Sayfası
 ├── widgets/
 │   └── bottom_menu.dart # Alt Menü
@@ -133,7 +134,7 @@ https://github.com/user-attachments/assets/40151a38-1ef9-43ae-bf98-3f67d8187fe7
   
 <table>
   <tr>
-    <td><img src="https://imgur.com/fRZxGjy" width="1500" /></td>
+    <td><img src="https://imgur.com/K1mnsDS.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/iTmsUFj.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/7wrHKRP.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/i9Y9YrK.png" width="1500" /></td>
@@ -141,7 +142,7 @@ https://github.com/user-attachments/assets/40151a38-1ef9-43ae-bf98-3f67d8187fe7
     <td><img src="https://imgur.com/JmFx9Ba.png" width="1500" /></td>
   </tr>
   <tr>
-    <td><img src="https://imgur.com/I2uKo2T" width="1500" /></td>
+    <td><img src="https://imgur.com/j1y2Nl9.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/rOHYsYy.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/TbYEN6l.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/2B9d5C5.png" width="1500" /></td>
