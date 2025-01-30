@@ -111,7 +111,7 @@ lib/
 │   ├── currency_screen.dart # Döviz Sayfası 
 │   ├── home_screen.dart     # Ana Sayfa
 │   ├── login_screen.dart     # Giriş Sayfa
-│   ├── profile_screen.dart  # Profil Sayfası│
+│   ├── profile_screen.dart  # Profil Sayfası
 │   ├── register_screen.dart  # Kayıt Sayfası
 │   └── search_screen.dart   # Arama Sayfası
 ├── widgets/
