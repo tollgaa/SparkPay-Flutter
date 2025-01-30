@@ -127,14 +127,13 @@ lib/
 
 ## Tanıtım Videosu
 
-https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067 
-  
+https://github.com/user-attachments/assets/40151a38-1ef9-43ae-bf98-3f67d8187fe7
 
 ## Ekran Görüntüleri
   
 <table>
   <tr>
-    <td><img src="https://i.imgur.com/0S9vKnD.png" width="1500" /></td>
+    <td><img src="https://imgur.com/fRZxGjy" width="1500" /></td>
     <td><img src="https://i.imgur.com/iTmsUFj.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/7wrHKRP.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/i9Y9YrK.png" width="1500" /></td>
@@ -142,6 +141,7 @@ https://github.com/user-attachments/assets/1c72d60c-8ea3-44d5-a17a-77ba24199067
     <td><img src="https://imgur.com/JmFx9Ba.png" width="1500" /></td>
   </tr>
   <tr>
+    <td><img src="https://imgur.com/I2uKo2T" width="1500" /></td>
     <td><img src="https://i.imgur.com/rOHYsYy.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/TbYEN6l.png" width="1500" /></td>
     <td><img src="https://i.imgur.com/2B9d5C5.png" width="1500" /></td>
