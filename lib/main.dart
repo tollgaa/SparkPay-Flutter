@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'core/theme_provider.dart';
+import 'core/user_provider.dart'; 
 import 'core/routes.dart';
 import 'core/themes.dart';
-import 'package:provider/provider.dart';
+import 'screens/settings_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+      ],
       child: const MyApp(),
     ),
   );
