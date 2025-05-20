@@ -748,19 +748,7 @@ class HomeScreen extends StatelessWidget {
               ),
               onTap: () {},
             ),
-            ListTile(
-              leading: Icon(
-                CupertinoIcons.person_2,
-                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-              ),
-              title: Text(
-                'Bize Ulaşın',
-                style: TextStyle(
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                ),
-              ),
-              onTap: () {},
-            ),
+
             ListTile(
               leading: Icon(
                 themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
@@ -813,7 +801,7 @@ class HomeScreen extends StatelessWidget {
                     BoxShadow(
                       color: themeProvider.isDarkMode ? Colors.white12 : Colors.black12,
                       offset: const Offset(0, 4),
-                      blurRadius: 8, // Daha yumuşak gölge
+                      blurRadius: 8,
                     ),
                   ],
                 ),
@@ -823,8 +811,8 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       "Hesap Bakiyeniz",
                       style: TextStyle(
-                        fontSize: 20, // Daha büyük font
-                        fontWeight: FontWeight.w600, // Modern bir ağırlık
+                        fontSize: 20, 
+                        fontWeight: FontWeight.w600, 
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
@@ -919,8 +907,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// Animasyonlu Buton Widget'ı
+  
 class AnimatedActionButton extends StatefulWidget {
   final IconData icon;
   final String label;
@@ -977,7 +964,7 @@ class _AnimatedActionButtonState extends State<AnimatedActionButton> with Single
         child: Column(
           children: [
             Container(
-              width: 60, // Daha büyük buton
+              width: 60,
               height: 60,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -998,7 +985,7 @@ class _AnimatedActionButtonState extends State<AnimatedActionButton> with Single
               ),
               child: Icon(
                 widget.icon,
-                size: 32, // Daha büyük simge
+                size: 32,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
             ),
@@ -1007,7 +994,7 @@ class _AnimatedActionButtonState extends State<AnimatedActionButton> with Single
               widget.label,
               style: TextStyle(
                 fontSize: 14,
-                fontWeight: FontWeight.w600, // Modern bir font ağırlığı
+                fontWeight: FontWeight.w600,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
             ),
