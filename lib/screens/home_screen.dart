@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../core/theme_provider.dart';
 import '../widgets/bottom_menu.dart';
 
@@ -10,6 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final local = AppLocalizations.of(context)!;
 
     TextEditingController amountControllerSend = TextEditingController();
     TextEditingController nameControllerSend = TextEditingController();
@@ -30,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               return AlertDialog(
                 backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
                 title: Text(
-                  'Para Gönder',
+                  local.sendMoney,
                   style: TextStyle(
                     color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                   ),
@@ -52,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Kayıtlı Kişiler',
+                          local.savedContacts,
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -62,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                         ListTile(
                           leading: CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage('assets/images/rabiaa.jpg'),
+                            backgroundImage: const AssetImage('assets/images/rabiaa.jpg'),
                             child: const AssetImage('assets/images/rabiaa.jpg') == null
                                 ? Icon(
                                     Icons.person,
@@ -71,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                                 : null,
                           ),
                           title: Text(
-                            'Rabia Dündar',
+                            local.contactName,
                             style: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             ),
@@ -84,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                                 phoneControllerSend.clear();
                               } else {
                                 isPersonSelected = true;
-                                nameControllerSend.text = 'Rabia Dündar';
+                                nameControllerSend.text = local.contactName;
                                 phoneControllerSend.text = '+905551234567';
                               }
                             });
@@ -92,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'İsim Soyisim:',
+                          '${local.fullName}:',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -106,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'İsim soyisim girin',
+                            hintText: local.enterFullName,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -120,7 +123,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Telefon Numarası:',
+                          '${local.phoneNumber}:',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -135,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Telefon numarası girin',
+                            hintText: local.enterPhoneNumber,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -149,7 +152,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Tutar (₺):',
+                          '${local.amount} (${local.currencySymbol}):',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -163,7 +166,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Tutar girin',
+                            hintText: local.enterAmount,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -198,7 +201,7 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Paranın Gönderileceği Kişi:',
+                                    local.recipient,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -207,28 +210,28 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 16),
                                   Text(
-                                    'İsim Soyisim: ${nameControllerSend.text}',
+                                    local.recipientNameDisplay(nameControllerSend.text),
                                     style: TextStyle(
                                       color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                                     ),
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    'Telefon: ${phoneControllerSend.text}',
+                                    local.recipientPhoneDisplay(phoneControllerSend.text),
                                     style: TextStyle(
                                       color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                                     ),
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    'Tutar: ₺${amountControllerSend.text}',
+                                    local.recipientAmountDisplay(local.currencySymbol, amountControllerSend.text),
                                     style: TextStyle(
                                       color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                                     ),
                                   ),
                                   const SizedBox(height: 16),
                                   Text(
-                                    'Onaylıyor musunuz?',
+                                    local.confirm,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -243,9 +246,9 @@ class HomeScreen extends StatelessWidget {
                                     Navigator.of(context).pop();
                                     Navigator.of(context).pop();
                                   },
-                                  child: const Text(
-                                    'Hayır',
-                                    style: TextStyle(color: Colors.red),
+                                  child: Text(
+                                    local.no,
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ),
                                 TextButton(
@@ -273,7 +276,7 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                               const SizedBox(height: 16),
                                               Text(
-                                                'Para Gönderildi!',
+                                                local.moneySent,
                                                 style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.bold,
@@ -282,7 +285,7 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                               const SizedBox(height: 8),
                                               Text(
-                                                'Dekont eposta adresinize gönderilmiştir!',
+                                                local.receiptSent,
                                                 style: TextStyle(
                                                   fontSize: 14,
                                                   color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
@@ -297,9 +300,9 @@ class HomeScreen extends StatelessWidget {
                                     nameControllerSend.clear();
                                     phoneControllerSend.clear();
                                   },
-                                  child: const Text(
-                                    'Evet',
-                                    style: TextStyle(color: Colors.blue),
+                                  child: Text(
+                                    local.yes,
+                                    style: const TextStyle(color: Colors.blue),
                                   ),
                                 ),
                               ],
@@ -308,9 +311,9 @@ class HomeScreen extends StatelessWidget {
                         );
                       }
                     },
-                    child: const Text(
-                      'Gönder',
-                      style: TextStyle(color: Colors.blue),
+                    child: Text(
+                      local.send,
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                 ],
@@ -332,7 +335,7 @@ class HomeScreen extends StatelessWidget {
               return AlertDialog(
                 backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
                 title: Text(
-                  'Para İste',
+                  local.requestMoney,
                   style: TextStyle(
                     color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                   ),
@@ -354,7 +357,7 @@ class HomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Kayıtlı Kişiler',
+                          local.savedContacts,
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -364,7 +367,7 @@ class HomeScreen extends StatelessWidget {
                         ListTile(
                           leading: CircleAvatar(
                             radius: 25,
-                            backgroundImage: AssetImage('assets/images/rabiaa.jpg'),
+                            backgroundImage: const AssetImage('assets/images/rabiaa.jpg'),
                             child: const AssetImage('assets/images/rabiaa.jpg') == null
                                 ? Icon(
                                     Icons.person,
@@ -373,7 +376,7 @@ class HomeScreen extends StatelessWidget {
                                 : null,
                           ),
                           title: Text(
-                            'Rabia Dündar',
+                            local.contactName,
                             style: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             ),
@@ -386,7 +389,7 @@ class HomeScreen extends StatelessWidget {
                                 phoneControllerRequest.clear();
                               } else {
                                 isPersonSelected = true;
-                                nameControllerRequest.text = 'Rabia Dündar';
+                                nameControllerRequest.text = local.contactName;
                                 phoneControllerRequest.text = '+905551234567';
                               }
                             });
@@ -394,7 +397,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'İsim Soyisim:',
+                          '${local.fullName}:',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -408,7 +411,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'İsim soyisim girin',
+                            hintText: local.enterFullName,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -422,7 +425,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Telefon Numarası:',
+                          '${local.phoneNumber}:',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -437,7 +440,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Telefon numarası girin',
+                            hintText: local.enterPhoneNumber,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -451,7 +454,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Tutar (₺):',
+                          '${local.amount} (${local.currencySymbol}):',
                           style: TextStyle(
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                             fontWeight: FontWeight.bold,
@@ -465,7 +468,7 @@ class HomeScreen extends StatelessWidget {
                             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                           ),
                           decoration: InputDecoration(
-                            hintText: 'Tutar girin',
+                            hintText: local.enterAmount,
                             hintStyle: TextStyle(
                               color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                             ),
@@ -509,7 +512,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 16),
                                   Text(
-                                    'Para Başarıyla İstendi!',
+                                    local.moneyRequested,
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -526,9 +529,9 @@ class HomeScreen extends StatelessWidget {
                         phoneControllerRequest.clear();
                       }
                     },
-                    child: const Text(
-                      'İste',
-                      style: TextStyle(color: Colors.blue),
+                    child: Text(
+                      local.request,
+                      style: const TextStyle(color: Colors.blue),
                     ),
                   ),
                 ],
@@ -546,7 +549,7 @@ class HomeScreen extends StatelessWidget {
           return AlertDialog(
             backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
             title: Text(
-              'Ödemeler',
+              local.payments,
               style: TextStyle(
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
@@ -569,7 +572,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      'Güncel borcunuz bulunmamakta!',
+                      local.noOutstandingPayments,
                       style: TextStyle(
                         color: Colors.grey[400],
                         fontSize: 18,
@@ -587,9 +590,9 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Kapat',
-                  style: TextStyle(color: Colors.blue),
+                child: Text(
+                  local.close,
+                  style: const TextStyle(color: Colors.blue),
                 ),
               ),
             ],
@@ -605,7 +608,7 @@ class HomeScreen extends StatelessWidget {
           return AlertDialog(
             backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
             title: Text(
-              'Faturalar',
+              local.bills,
               style: TextStyle(
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
@@ -628,7 +631,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 16),
                     Text(
-                      'VODAFONE GSM',
+                      local.phoneBill,
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16,
@@ -637,7 +640,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '325.5 TL',
+                      '${local.billAmountVodafone} ${local.currencySymbol}',
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
                         fontSize: 14,
@@ -650,7 +653,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'CK ENERJİ BOĞAZİÇİ ELEKTRİK',
+                      local.electricityBill,
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                         fontSize: 16,
@@ -659,7 +662,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '340.2 TL',
+                      '${local.billAmountCkEnergy} ${local.currencySymbol}',
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
                         fontSize: 14,
@@ -675,9 +678,9 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Kapat',
-                  style: TextStyle(color: Colors.blue),
+                child: Text(
+                  local.close,
+                  style: const TextStyle(color: Colors.blue),
                 ),
               ),
             ],
@@ -688,7 +691,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SparkPay'),
+        title: Text(local.appName),
         iconTheme: IconThemeData(
           color: themeProvider.isDarkMode ? Colors.white : Colors.black,
         ),
@@ -728,7 +731,7 @@ class HomeScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                'Ana Sayfa',
+                local.home,
                 style: TextStyle(
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
@@ -741,21 +744,22 @@ class HomeScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                'Ayarlar',
+                local.settings,
                 style: TextStyle(
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                context.go('/settings');
+                },
             ),
-
             ListTile(
               leading: Icon(
                 themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                themeProvider.isDarkMode ? 'Gündüz Modu' : 'Gece Modu',
+                themeProvider.isDarkMode ? local.themeLight : local.themeDark,
                 style: TextStyle(
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
@@ -776,7 +780,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Text(
-                "SparkPay'e Hoş Geldin Tolga!",
+                local.welcomeMessage('Tolga'),
                 style: TextStyle(
                   fontFamily: 'Playwrite India',
                   fontSize: 20,
@@ -809,19 +813,19 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hesap Bakiyeniz",
+                      local.accountBalance,
                       style: TextStyle(
-                        fontSize: 20, 
-                        fontWeight: FontWeight.w600, 
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                       ),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "₺ 5,000.00",
+                      "${local.currencySymbol} 5,000.00",
                       style: TextStyle(
                         fontFamily: 'Lexend Giga',
-                        fontSize: 28,   
+                        fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: const Color(0xFF4CAF50),
                       ),
@@ -832,31 +836,23 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         _buildActionButton(
                           icon: Icons.send,
-                          label: "Para Gönder",
-                          onTap: () {
-                            showSendMoneyDialog();
-                          },
+                          label: local.sendMoney,
+                          onTap: showSendMoneyDialog,
                         ),
                         _buildActionButton(
                           icon: Icons.request_page,
-                          label: "Para İste",
-                          onTap: () {
-                            showRequestMoneyDialog();
-                          },
+                          label: local.requestMoney,
+                          onTap: showRequestMoneyDialog,
                         ),
                         _buildActionButton(
                           icon: Icons.payment,
-                          label: "Ödemeler",
-                          onTap: () {
-                            showPaymentsDialog();
-                          },
+                          label: local.payments,
+                          onTap: showPaymentsDialog,
                         ),
                         _buildActionButton(
                           icon: Icons.receipt,
-                          label: "Faturalar",
-                          onTap: () {
-                            showBillsDialog();
-                          },
+                          label: local.bills,
+                          onTap: showBillsDialog,
                         ),
                       ],
                     ),
@@ -865,7 +861,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               Text(
-                "Son Harcamalar",
+                local.recentExpenses,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -875,9 +871,12 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Column(
                 children: [
-                  _buildExpenseCard('Netflix', '₺ 150.00', Colors.red, Icons.movie, themeProvider, 0),
-                  _buildExpenseCard('Spotify', '₺ 49.99', Colors.green, Icons.music_note, themeProvider, 1),
-                  _buildExpenseCard('Şok Beylerbeyi Şube', '₺ 1250.24', Colors.blue, Icons.store, themeProvider, 2),
+                  _buildExpenseCard(local.expenseNetflix, 
+                    "${local.currencySymbol} 150.00", Colors.red, Icons.movie, themeProvider, 0),
+                  _buildExpenseCard(local.expenseSpotify, 
+                    "${local.currencySymbol} 49.99", Colors.green, Icons.music_note, themeProvider, 1),
+                  _buildExpenseCard(local.expenseSokBeylerbeyi, 
+                    "${local.currencySymbol} 1250.24", Colors.blue, Icons.store, themeProvider, 2),
                 ],
               ),
             ],
@@ -888,7 +887,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon, ThemeProvider themeProvider, int index) {
+  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon, 
+      ThemeProvider themeProvider, int index) {
     return AnimatedExpenseCard(
       title: title,
       amount: amount,
@@ -907,7 +907,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-  
+
 class AnimatedActionButton extends StatefulWidget {
   final IconData icon;
   final String label;
@@ -923,7 +923,8 @@ class AnimatedActionButton extends StatefulWidget {
   _AnimatedActionButtonState createState() => _AnimatedActionButtonState();
 }
 
-class _AnimatedActionButtonState extends State<AnimatedActionButton> with SingleTickerProviderStateMixin {
+class _AnimatedActionButtonState extends State<AnimatedActionButton> 
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -949,16 +950,12 @@ class _AnimatedActionButtonState extends State<AnimatedActionButton> with Single
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     return GestureDetector(
-      onTapDown: (_) {
-        _controller.forward();
-      },
+      onTapDown: (_) => _controller.forward(),
       onTapUp: (_) {
         _controller.reverse();
         widget.onTap?.call();
       },
-      onTapCancel: () {
-        _controller.reverse();
-      },
+      onTapCancel: () => _controller.reverse(),
       child: ScaleTransition(
         scale: _scaleAnimation,
         child: Column(
@@ -1026,7 +1023,8 @@ class AnimatedExpenseCard extends StatefulWidget {
   _AnimatedExpenseCardState createState() => _AnimatedExpenseCardState();
 }
 
-class _AnimatedExpenseCardState extends State<AnimatedExpenseCard> with SingleTickerProviderStateMixin {
+class _AnimatedExpenseCardState extends State<AnimatedExpenseCard> 
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
 
@@ -1055,6 +1053,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
     return SlideTransition(
       position: _slideAnimation,
       child: Container(
@@ -1102,7 +1101,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard> with SingleTi
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Harcama Tutarı',
+                        local.expenseAmount,
                         style: TextStyle(
                           fontSize: 12,
                           color: widget.themeProvider.isDarkMode ? Colors.grey[400] : Colors.black54,

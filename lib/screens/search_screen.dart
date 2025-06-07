@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sparkpay/widgets/bottom_menu.dart';
 import 'package:provider/provider.dart';
+import 'package:sparkpay/widgets/bottom_menu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../core/theme_provider.dart';
 import '../screens/currency_screen.dart';
 import '../screens/profile_screen.dart';
@@ -16,10 +18,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Map<String, String>> searchResults = [];
 
-  final List<Map<String, String>> suggestions = [
-    {'keyword': 'döviz', 'title': 'Döviz Kurları', 'route': '/currency'},
-    {'keyword': 'profil', 'title': 'Profil Ekranım', 'route': '/profile'},
-  ];
+  late List<Map<String, String>> suggestions;
 
   void _onSearchChanged(String query) {
     setState(() {
@@ -39,25 +38,26 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void _navigateToScreen(String route) {
-    if (route == '/currency') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const CurrencyScreen()),
-      );
-      _searchController.clear();
-      setState(() {
-        searchResults.clear();
-      });
-    } else if (route == '/profile') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const ProfileScreen()),
-      );
-      _searchController.clear();
-      setState(() {
-        searchResults.clear();
-      });
+    Widget screen;
+    switch (route) {
+      case '/currency':
+        screen = const CurrencyScreen();
+        break;
+      case '/profile':
+        screen = const ProfileScreen();
+        break;
+      default:
+        return;
     }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+    );
+    _searchController.clear();
+    setState(() {
+      searchResults.clear();
+    });
   }
 
   @override
@@ -69,6 +69,12 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final local = AppLocalizations.of(context)!;
+
+    suggestions = [
+      {'keyword': local.keywordCurrency, 'title': local.titleCurrency, 'route': '/currency'},
+      {'keyword': local.keywordProfile, 'title': local.titleProfile, 'route': '/profile'},
+    ];
 
     return Scaffold(
       body: Container(
@@ -90,7 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Arama Ekranı",
+                      local.searchTitle,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
@@ -122,7 +128,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                     ),
                     decoration: InputDecoration(
-                      hintText: 'Arama yapın...',
+                      hintText: local.searchHint,
                       hintStyle: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
                       ),

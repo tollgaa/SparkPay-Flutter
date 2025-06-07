@@ -1,0 +1,142 @@
+{
+  "@@locale": "tr",
+  "appName": "SparkPay",
+  "welcomeMessage": "SparkPay'e Hoş Geldin, {name}!",
+  "@welcomeMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "description": "Kullanıcının ismi"
+      }
+    }
+  },
+  "welcomeToSparkPay": "SparkPay'e Hoş Geldin",
+  "sendMoney": "Para Gönder",
+  "requestMoney": "Para İste",
+  "payments": "Ödemeler",
+  "bills": "Faturalar",
+  "recentExpenses": "Son Harcamalar",
+  "sendTo": "Paranın Gönderileceği Kişi:",
+  "nameSurname": "İsim Soyisim:",
+  "phone": "Telefon:",
+  "amount": "Tutar:",
+  "confirmQuestion": "Onaylıyor musunuz?",
+  "moneySent": "Para Gönderildi!",
+  "receiptSent": "Dekont eposta adresinize gönderilmiştir!",
+  "moneyRequested": "Para Başarıyla İstendi!",
+  "noDebt": "Güncel borcunuz bulunmamakta!",
+  "close": "Kapat",
+  "billsTitle": "Faturalar",
+  "nameHint": "İsim soyisim girin",
+  "phoneHint": "Telefon numarası girin",
+  "amountHint": "Tutar girin",
+  "send": "Gönder",
+  "yes": "Evet",
+  "no": "Hayır",
+  "ask": "İste",
+  "login": "Giriş Yap",
+  "register": "Kayıt Ol",
+  "registerSuccess": "Kayıt Başarılı!",
+  "update": "Güncelle",
+  "updateSuccess": "İsim güncellendi",
+  "settings": "Ayarlar",
+  "themeDark": "Gece Modu",
+  "themeLight": "Gündüz Modu",
+  "home": "Ana Sayfa",
+  "profile": "Profilim",
+  "logout": "Çıkış Yap",
+  "support": "Teknik Destek",
+  "contactUs": "Bize Ulaşın",
+  "sendMessage": "Gönder",
+  "messageSent": "Mesajınız Başarıyla İletildi!",
+  "updateName": "İsminizi Güncelleyin",
+  "enterName": "İsminizi girin",
+  "searchTitle": "Arama Ekranı",
+  "searchHint": "Arama yapın...",
+  "expenseAmount": "Harcama Tutarı",
+  "currencyRates": "Döviz Kurları",
+  "rate": "Kur: {rate} TL",
+  "@rate": {
+    "placeholders": {
+      "rate": {
+        "type": "String",
+        "description": "Döviz kuru değeri"
+      }
+    }
+  },
+  "email": "E-Posta",
+  "password": "Şifre",
+  "repeatPassword": "Şifre Tekrar",
+  "name": "İsim",
+  "surname": "Soyisim",
+  "invalidLogin": "E-posta ya da şifre hatalı!",
+  "emailAddress": "E-Posta Adresiniz",
+  "identityNumber": "Kimlik No",
+  "address": "Adres",
+  "savedContacts": "Kayıtlı Kişiler",
+  "contactName": "Rabia Dündar",
+  "rateLabel": "Kur: {value} TL",
+  "@rateLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "description": "Döviz kuru değeri"
+      }
+    }
+  },
+  "fetchError": "Döviz kurları alınamadı",
+  "electricityBill": "CK ENERJİ BOĞAZİÇİ ELEKTRİK",
+  "phoneBill": "VODAFONE GSM",
+  "signUp": "Kayıt Ol",
+  "titleCurrency": "Döviz Kurları",
+  "titleProfile": "Profil Ekranım",
+  "keywordCurrency": "döviz",
+  "keywordProfile": "profil",
+  "incorrectCredentials": "E-posta ya da şifre hatalı!",
+  "labelNameSurname": "İsim Soyisim:",
+  "labelPhoneNumber": "Telefon Numarası:",
+  "labelAmount": "Tutar (₺):",
+  "labelRecipientInfo": "Paranın Gönderileceği Kişi:",
+  "recipientNameDisplay": "İsim: {name}",
+  "@recipientNameDisplay": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "description": "Alıcının ismi"
+      }
+    }
+  },
+  "recipientPhoneDisplay": "Telefon: {phone}",
+  "@recipientPhoneDisplay": {
+    "placeholders": {
+      "phone": {
+        "type": "String",
+        "description": "Alıcının telefon numarası"
+      }
+    }
+  },
+  "recipientAmountDisplay": "Tutar: {currencySymbol}{amount}",
+  "@recipientAmountDisplay": {
+    "placeholders": {
+      "currencySymbol": {
+        "type": "String",
+        "description": "Para birimi sembolü"
+      },
+      "amount": {
+        "type": "String",
+        "description": "Gönderilecek veya talep edilecek tutar"
+      }
+    }
+  },
+  "accountBalance": "Hesap Bakiyeniz",
+  "lightMode": "Gündüz Modu",
+  "darkMode": "Gece Modu",
+  "noOutstandingPayments": "Güncel borcunuz bulunmamakta!",
+  "request": "İste",
+  "enterAmount": "Tutar girin",
+  "enterPhoneNumber": "Telefon numarası girin",
+  "enterFullName": "İsim soyisim girin",
+  "confirm": "Onaylıyor musunuz?",
+  "fullName": "İsim Soyisim",
+  "request": "İstek"
+}

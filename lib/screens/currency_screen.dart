@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:sparkpay/widgets/bottom_menu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../core/theme_provider.dart';
 
 class CurrencyScreen extends StatefulWidget {
@@ -43,13 +45,10 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
     });
 
     try {
-      final response = await http.get(
-        Uri.parse('$apiUrl$apiKey/latest/TRY'),
-      );
+      final response = await http.get(Uri.parse('$apiUrl$apiKey/latest/TRY'));
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
-        print('API Response: $data');
         setState(() {
           exchangeRates = Map<String, double>.from(data['conversion_rates']);
           isLoading = false;
@@ -63,10 +62,10 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
         isLoading = false;
         lastUpdated = "Veri alınamadı";
       });
-      print('Hata: $e');
       if (mounted) {
+        final local = AppLocalizations.of(context)!;
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Döviz kurları güncellenemedi: $e')),
+          SnackBar(content: Text(local.fetchError)),
         );
       }
     }
@@ -75,6 +74,8 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final local = AppLocalizations.of(context)!;
+
     final currencies = [
       {'currency': 'USD', 'icon': Icons.attach_money},
       {'currency': 'EUR', 'icon': Icons.euro_symbol},
@@ -104,7 +105,7 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Döviz Kurları",
+                      local.currencyRates,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
@@ -117,9 +118,11 @@ class _CurrencyScreenState extends State<CurrencyScreen> {
               ),
               Expanded(
                 child: isLoading
-                    ? Center(child: CircularProgressIndicator(
-                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                      ))
+                    ? Center(
+                        child: CircularProgressIndicator(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                        ),
+                      )
                     : CurrencyList(
                         currencies: currencies,
                         exchangeRates: exchangeRates,
@@ -149,6 +152,8 @@ class CurrencyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       itemCount: currencies.length,
@@ -164,6 +169,7 @@ class CurrencyList extends StatelessWidget {
           icon: currency['icon'],
           index: index,
           themeProvider: themeProvider,
+          rateLabel: local.rateLabel(rate),
         );
       },
     );
@@ -173,6 +179,7 @@ class CurrencyList extends StatelessWidget {
 class AnimatedCurrencyCard extends StatefulWidget {
   final String currency;
   final String rate;
+  final String rateLabel;
   final IconData icon;
   final int index;
   final ThemeProvider themeProvider;
@@ -183,6 +190,7 @@ class AnimatedCurrencyCard extends StatefulWidget {
     required this.icon,
     required this.index,
     required this.themeProvider,
+    required this.rateLabel,
   });
 
   @override
@@ -267,7 +275,7 @@ class _AnimatedCurrencyCardState extends State<AnimatedCurrencyCard> with Single
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      'Kur: ${widget.rate} TL',
+                      widget.rateLabel,
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 14,

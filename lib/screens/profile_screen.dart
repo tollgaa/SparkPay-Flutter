@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../core/theme_provider.dart';
 import '../core/user_provider.dart';
 import '../widgets/bottom_menu.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final userProvider = Provider.of<UserProvider>(context);
+    final local = AppLocalizations.of(context)!;
 
     TextEditingController messageController = TextEditingController();
 
@@ -22,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
           return AlertDialog(
             backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
             title: Text(
-              'Bize Ulaşın',
+              local.contactUs,
               style: TextStyle(
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
@@ -43,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'E-Posta Adresiniz:',
+                      '${local.emailAddress}:',
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                         fontWeight: FontWeight.bold,
@@ -66,7 +68,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Mesajınızı Bizimle Paylaşın:',
+                      '${local.sendMessage}:',
                       style: TextStyle(
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                         fontWeight: FontWeight.bold,
@@ -80,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                         color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                       ),
                       decoration: InputDecoration(
-                        hintText: 'Mesajınızı girin',
+                        hintText: '${local.sendMessage}...',
                         hintStyle: TextStyle(
                           color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                         ),
@@ -103,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                   if (messageController.text.isNotEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: const Text('Mesajınız Başarıyla İletildi!'),
+                        content: Text(local.messageSent),
                         backgroundColor: Colors.green,
                         duration: const Duration(seconds: 2),
                       ),
@@ -111,9 +113,9 @@ class ProfileScreen extends StatelessWidget {
                     messageController.clear();
                   }
                 },
-                child: const Text(
-                  'Gönder',
-                  style: TextStyle(color: Colors.blue),
+                child: Text(
+                  local.sendMessage,
+                  style: const TextStyle(color: Colors.blue),
                 ),
               ),
             ],
@@ -125,7 +127,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Profilim',
+          local.profile,
           style: TextStyle(
             fontFamily: 'Playwrite India',
             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
@@ -162,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                 'tolga@istinye.edu.tr',
                 style: TextStyle(
                   fontSize: 18,
-                  color: Colors.grey,
+                  color: themeProvider.isDarkMode ? Colors.grey[400] : Colors.grey,
                 ),
               ),
             ),
@@ -173,10 +175,10 @@ class ProfileScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                'Ayarlar',
+                local.settings,
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
@@ -191,10 +193,10 @@ class ProfileScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                'Teknik Destek',
+                local.support,
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
@@ -209,10 +211,10 @@ class ProfileScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               title: Text(
-                'Çıkış Yap',
+                local.logout,
                 style: TextStyle(
                   fontFamily: 'Oswald',
-                  color: themeProvider.isDarkMode ? Colors.black : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,

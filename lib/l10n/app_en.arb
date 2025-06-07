@@ -1,0 +1,147 @@
+{
+  "@@locale": "en",
+  "appName": "SparkPay",
+  "welcomeMessage": "Welcome to SparkPay, {name}!",
+  "@welcomeMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "description": "The name of the user"
+      }
+    }
+  },
+  "sendMoney": "Send Money",
+  "requestMoney": "Request Money",
+  "payments": "Payments",
+  "bills": "Bills",
+  "recentExpenses": "Recent Expenses",
+  "sendTo": "Recipient:",
+  "nameSurname": "Name Surname:",
+  "phone": "Phone:",
+  "amount": "Amount:",
+  "confirmQuestion": "Do you confirm?",
+  "moneySent": "Money Sent!",
+  "receiptSent": "Receipt has been sent to your email!",
+  "moneyRequested": "Money Successfully Requested!",
+  "noDebt": "You have no outstanding debts!",
+  "close": "Close",
+  "billsTitle": "Bills",
+  "nameHint": "Enter full name",
+  "phoneHint": "Enter phone number",
+  "amountHint": "Enter amount",
+  "send": "Send",
+  "yes": "Yes",
+  "no": "No",
+  "ask": "Request",
+  "login": "Login",
+  "register": "Register",
+  "registerSuccess": "Registration Successful!",
+  "update": "Update",
+  "updateSuccess": "Name updated",
+  "settings": "Settings",
+  "themeDark": "Dark Mode",
+  "themeLight": "Light Mode",
+  "home": "Home",
+  "profile": "My Profile",
+  "logout": "Logout",
+  "support": "Support",
+  "contactUs": "Contact Us",
+  "sendMessage": "Send",
+  "messageSent": "Your message has been sent successfully!",
+  "updateName": "Update Your Name",
+  "enterName": "Enter your name",
+  "searchTitle": "Search Screen",
+  "searchHint": "Search...",
+  "expenseAmount": "Expense Amount",
+  "currencyRates": "Currency Rates",
+  "rate": "Rate: {rate} TL",
+  "@rate": {
+    "placeholders": {
+      "rate": {
+        "type": "String",
+        "description": "The exchange rate value"
+      }
+    }
+  },
+  "email": "Email",
+  "password": "Password",
+  "repeatPassword": "Repeat Password",
+  "name": "Name",
+  "surname": "Surname",
+  "invalidLogin": "Incorrect email or password!",
+  "emailAddress": "Email Address",
+  "identityNumber": "ID Number",
+  "address": "Address",
+  "savedContacts": "Saved Contacts",
+  "rateLabel": "Exchange Rate: {value} TL",
+  "@rateLabel": {
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "description": "The exchange rate value"
+      }
+    }
+  },
+  "fetchError": "Failed to fetch exchange rates",
+  "contactName": "Rabia Dündar",
+  "electricityBill": "CK ENERGY BOSPHORUS ELECTRICITY",
+  "phoneBill": "VODAFONE GSM",
+  "signUp": "Sign Up",
+  "titleCurrency": "Currency Rates",
+  "titleProfile": "My Profile",
+  "keywordCurrency": "currency",
+  "keywordProfile": "profile",
+  "labelNameSurname": "Name Surname:",
+  "labelPhoneNumber": "Phone Number:",
+  "labelAmount": "Amount (₺):",
+  "labelRecipientInfo": "Recipient Info:",
+  "recipientNameDisplay": "Name: {name}",
+  "@recipientNameDisplay": {
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "description": "The name of the recipient"
+      }
+    }
+  },
+  "recipientPhoneDisplay": "Phone: {phone}",
+  "@recipientPhoneDisplay": {
+    "placeholders": {
+      "phone": {
+        "type": "String",
+        "description": "The phone number of the recipient"
+      }
+    }
+  },
+  "recipientAmountDisplay": "Amount: {currencySymbol}{amount}",
+  "@recipientAmountDisplay": {
+    "placeholders": {
+      "currencySymbol": {
+        "type": "String",
+        "description": "The currency symbol"
+      },
+      "amount": {
+        "type": "String",
+        "description": "The amount to be sent or requested"
+      }
+    }
+  },
+  "incorrectCredentials": "Incorrect email or password!",
+  "accountBalance": "Account Balance",
+  "expenseNetflix": "Netflix",
+  "expenseSpotify": "Spotify",
+  "expenseSokBeylerbeyi": "Şok Beylerbeyi Branch",
+  "billAmountVodafone": "325.5",
+  "billAmountCkEnergy": "340.2",
+  "currencySymbol": "₺",
+  "fullName": "Full Name",
+  "enterFullName": "Enter full name",
+  "phoneNumber": "Phone Number",
+  "enterPhoneNumber": "Enter phone number",
+  "enterAmount": "Enter amount",
+  "recipient": "Recipient",
+  "confirm": "Do you confirm?",
+  "noOutstandingPayments": "You have no outstanding payments!",
+  "welcomeToSparkPay": "Welcome to SparkPay",
+  "request": "Request"
+}

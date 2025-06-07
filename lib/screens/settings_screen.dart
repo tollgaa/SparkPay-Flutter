@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../core/theme_provider.dart';
 import '../core/user_provider.dart';
+import '../core/locale_provider.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -11,13 +14,16 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final userProvider = Provider.of<UserProvider>(context);
+    final localeProvider = Provider.of<LocaleProvider>(context);
+    final loc = AppLocalizations.of(context)!;
+
     TextEditingController nameController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Ayarlar',
-          style: TextStyle(fontFamily: 'Playwrite India'),
+        title: Text(
+          loc.settings,
+          style: const TextStyle(fontFamily: 'Playwrite India'),
         ),
         backgroundColor: themeProvider.isDarkMode ? Colors.black : Colors.white,
         iconTheme: IconThemeData(
@@ -29,10 +35,26 @@ class SettingsScreen extends StatelessWidget {
             color: themeProvider.isDarkMode ? Colors.white : Colors.black,
           ),
           onPressed: () {
-            print("Geri butonuna basıldı!");
             context.go('/profile');
           },
         ),
+        actions: [
+          IconButton(
+            icon: Text(
+              localeProvider.locale.languageCode == 'tr' ? 'EN' : 'TR',
+              style: TextStyle(
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onPressed: () {
+              final newLocale = localeProvider.locale.languageCode == 'tr'
+                  ? const Locale('en')
+                  : const Locale('tr');
+              localeProvider.setLocale(newLocale);
+            },
+          ),
+        ],
       ),
       backgroundColor: themeProvider.isDarkMode ? Colors.black : const Color(0xFFD0D0D0),
       body: Padding(
@@ -41,7 +63,7 @@ class SettingsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'İsminizi Güncelleyin',
+              loc.updateName,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -55,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
                 color: themeProvider.isDarkMode ? Colors.white : Colors.black,
               ),
               decoration: InputDecoration(
-                hintText: 'İsminizi girin',
+                hintText: loc.enterName,
                 hintStyle: TextStyle(
                   color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
                 ),
@@ -70,30 +92,31 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: themeProvider.isDarkMode
-                    ? Colors.grey[700]
-                    : Colors.black,
+                backgroundColor: themeProvider.isDarkMode ? Colors.grey[700] : Colors.black,
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
               onPressed: () {
                 String updatedName = nameController.text;
                 userProvider.updateName(updatedName);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('İsim güncellendi'),
-                    duration: Duration(seconds: 2),
+                  SnackBar(
+                    content: Text(loc.updateSuccess),
+                    duration: const Duration(seconds: 2),
                   ),
                 );
                 context.go('/profile');
               },
-              child: const Text('Güncelle', style: TextStyle(color: Colors.white)),
+              child: Text(
+                loc.update,
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(height: 10),
             Divider(color: themeProvider.isDarkMode ? Colors.white : Colors.black),
             const SizedBox(height: 20),
             ListTile(
               title: Text(
-                'Gece Modu',
+                themeProvider.isDarkMode ? loc.themeLight : loc.themeDark,
                 style: TextStyle(
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                   fontSize: 16,
@@ -109,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ListTile(
               title: Text(
-                'E-Posta Adresiniz',
+                loc.emailAddress,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
@@ -118,7 +141,7 @@ class SettingsScreen extends StatelessWidget {
               subtitle: Text(
                 'tolga@istinye.edu.tr',
                 style: TextStyle(
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white70 : Colors.black87,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
@@ -126,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ListTile(
               title: Text(
-                'Kimlik No',
+                loc.identityNumber,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
@@ -135,7 +158,7 @@ class SettingsScreen extends StatelessWidget {
               subtitle: Text(
                 '12345678901',
                 style: TextStyle(
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white70 : Colors.black87,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
@@ -143,7 +166,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 10),
             ListTile(
               title: Text(
-                'Adres',
+                loc.address,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
@@ -152,7 +175,7 @@ class SettingsScreen extends StatelessWidget {
               subtitle: Text(
                 'Şişli/İSTANBUL',
                 style: TextStyle(
-                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                  color: themeProvider.isDarkMode ? Colors.white70 : Colors.black87,
                 ),
               ),
               tileColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,

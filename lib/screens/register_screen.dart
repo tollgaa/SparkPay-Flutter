@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final local = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF121212),
@@ -15,9 +18,9 @@ class RegisterScreen extends StatelessWidget {
             context.go('/login');
           },
         ),
-        title: const Text(
-          'Kayıt Ol',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          local.register,
+          style: const TextStyle(color: Colors.white),
         ),
       ),
       backgroundColor: const Color(0xFF121212),
@@ -35,24 +38,24 @@ class RegisterScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              _buildTextField("İsim", icon: Icons.person),
+              _buildTextField(local.name, icon: Icons.person),
               const SizedBox(height: 16),
-              _buildTextField("Soyisim", icon: Icons.person),
+              _buildTextField(local.surname, icon: Icons.person),
               const SizedBox(height: 16),
-              _buildTextField("E-posta", icon: Icons.email),
+              _buildTextField(local.email, icon: Icons.email),
               const SizedBox(height: 16),
-              _buildTextField("Şifre", icon: Icons.key, obscureText: true),
+              _buildTextField(local.password, icon: Icons.key, obscureText: true),
               const SizedBox(height: 16),
-              _buildTextField("Şifre Tekrar", icon: Icons.key, obscureText: true),
+              _buildTextField(local.repeatPassword, icon: Icons.key, obscureText: true),
               const SizedBox(height: 16),
               SizedBox(
                 width: 300,
                 child: ElevatedButton(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Kayıt Başarılı!"),
-                        duration: Duration(seconds: 2),
+                      SnackBar(
+                        content: Text(local.registerSuccess),
+                        duration: const Duration(seconds: 2),
                       ),
                     );
                     Future.delayed(const Duration(seconds: 2), () {
@@ -66,9 +69,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     minimumSize: const Size(double.infinity, 50),
                   ),
-                  child: const Text(
-                    "Kayıt Ol",
-                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  child: Text(
+                    local.register,
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),
               ),
