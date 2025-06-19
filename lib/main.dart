@@ -8,6 +8,7 @@ import 'core/user_provider.dart';
 import 'core/locale_provider.dart';
 import 'core/routes.dart';
 import 'core/themes.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(
@@ -16,6 +17,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => BalanceProvider()),
       ],
       child: const MyApp(),
     ),

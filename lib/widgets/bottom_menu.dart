@@ -15,46 +15,49 @@ class BottomMenu extends StatelessWidget {
 
     return SizedBox(
       height: 70,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-            onPressed: () {
-              context.go("/home");
-            },
-            icon: Icon(
-              CupertinoIcons.home,
-              color: themeProvider.isDarkMode ? Colors.white : Colors.black, 
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              onPressed: () {
+                context.go('/home');
+              },
+              icon: Icon(
+                CupertinoIcons.home,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              context.go("/search");
-            },
-            icon: Icon(
-              CupertinoIcons.search,
-              color: themeProvider.isDarkMode ? Colors.white : Colors.black, 
+            IconButton(
+              onPressed: () {
+                context.go('/search');
+              },
+              icon: Icon(
+                CupertinoIcons.search,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              context.go("/currency");
-            },
-            icon: Icon(
-              CupertinoIcons.money_dollar_circle,
-              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+            IconButton(
+              onPressed: () {
+                context.go('/currency');
+              },
+              icon: Icon(
+                CupertinoIcons.money_dollar_circle,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              context.go("/profile");
-            },
-            icon: Icon(
-              CupertinoIcons.person,
-              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+            IconButton(
+              onPressed: () {
+                context.go('/profile');
+              },
+              icon: Icon(
+                CupertinoIcons.person,
+                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

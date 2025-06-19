@@ -6,688 +6,631 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../core/theme_provider.dart';
 import '../widgets/bottom_menu.dart';
 
-class HomeScreen extends StatelessWidget {
+class BalanceProvider with ChangeNotifier {
+  double _balance = 50000.00;
+
+  double get balance => _balance;
+
+  void deductBalance(double amount) {
+    if (_balance >= amount) {
+      _balance -= amount;
+      notifyListeners();
+    } else {
+      throw Exception('Yetersiz bakiye');
+    }
+  }
+
+  void addBalance(double amount) {
+    _balance += amount;
+    notifyListeners();
+  }
+}
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController amountControllerSend = TextEditingController();
+  final TextEditingController nameControllerSend = TextEditingController();
+  final TextEditingController phoneControllerSend = TextEditingController();
+
+  final TextEditingController amountControllerRequest = TextEditingController();
+  final TextEditingController nameControllerRequest = TextEditingController();
+  final TextEditingController phoneControllerRequest = TextEditingController();
+
+  @override
+  void dispose() {
+    amountControllerSend.dispose();
+    nameControllerSend.dispose();
+    phoneControllerSend.dispose();
+    amountControllerRequest.dispose();
+    nameControllerRequest.dispose();
+    phoneControllerRequest.dispose();
+    super.dispose();
+  }
+
+  void showMoneyDialog({
+    required BuildContext context,
+    required String title,
+    required String actionText,
+    required VoidCallback onAction,
+    required TextEditingController nameController,
+    required TextEditingController phoneController,
+    required TextEditingController amountController,
+  }) {
+    bool isPersonSelected = false;
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    final local = AppLocalizations.of(context)!;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return AlertDialog(
+              backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+              title: Text(
+                title,
+                style: TextStyle(
+                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                ),
+              ),
+              contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+              insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              content: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.9,
+                  minWidth: 280,
+                  maxHeight: MediaQuery.of(context).size.height * 0.7,
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        local.savedContacts,
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      ListTile(
+                        leading: const CircleAvatar(
+                          radius: 25,
+                          backgroundImage: AssetImage('assets/images/rabiaa.jpg'),
+                        ),
+                        title: Text(
+                          local.contactName,
+                          style: TextStyle(
+                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            if (isPersonSelected) {
+                              isPersonSelected = false;
+                              nameController.clear();
+                              phoneController.clear();
+                            } else {
+                              isPersonSelected = true;
+                              nameController.text = local.contactName;
+                              phoneController.text = '+905551234567';
+                            }
+                          });
+                        },
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '${local.fullName}:',
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: nameController,
+                        enabled: true,
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: local.enterFullName,
+                          hintStyle: TextStyle(
+                            color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
+                          ),
+                          filled: true,
+                          fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '${local.phoneNumber}:',
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: phoneController,
+                        enabled: true,
+                        keyboardType: TextInputType.phone,
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: local.enterPhoneNumber,
+                          hintStyle: TextStyle(
+                            color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
+                          ),
+                          filled: true,
+                          fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '${local.amount} (${local.currencySymbol}):',
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: amountController,
+                        keyboardType: TextInputType.number,
+                        style: TextStyle(
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          hintText: local.enterAmount,
+                          hintStyle: TextStyle(
+                            color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
+                          ),
+                          filled: true,
+                          fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    if (nameController.text.isNotEmpty &&
+                        phoneController.text.isNotEmpty &&
+                        amountController.text.isNotEmpty) {
+                      onAction();
+                    }
+                  },
+                  child: Text(
+                    actionText,
+                    style: const TextStyle(color: Colors.blue),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void showSendMoneyDialog() {
+    final local = AppLocalizations.of(context)!;
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
+    showMoneyDialog(
+      context: context,
+      title: local.sendMoney,
+      actionText: local.send,
+      nameController: nameControllerSend,
+      phoneController: phoneControllerSend,
+      amountController: amountControllerSend,
+      onAction: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    local.recipient,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    local.recipientNameDisplay(nameControllerSend.text),
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    local.recipientPhoneDisplay(phoneControllerSend.text),
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    local.recipientAmountDisplay(local.currencySymbol, amountControllerSend.text),
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    local.confirm,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    local.no,
+                    style: const TextStyle(color: Colors.red),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    try {
+                      double amount = double.parse(amountControllerSend.text);
+                      Provider.of<BalanceProvider>(context, listen: false).deductBalance(amount);
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          Future.delayed(const Duration(seconds: 2), () {
+                            Navigator.of(context).pop();
+                          });
+                          return AlertDialog(
+                            backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                  size: 60,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  local.moneySent,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  local.receiptSent,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                      amountControllerSend.clear();
+                      nameControllerSend.clear();
+                      phoneControllerSend.clear();
+                    } catch (e) {
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pop();
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.error,
+                                  color: Colors.red,
+                                  size: 60,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  e.toString().contains('Yetersiz')
+                                      ? 'Yetersiz Bakiye'
+                                      : 'Geçersiz miktar girdiniz',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text(local.close),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  },
+                  child: Text(
+                    local.yes,
+                    style: const TextStyle(color: Colors.blue),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void showRequestMoneyDialog() {
+    final local = AppLocalizations.of(context)!;
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
+    showMoneyDialog(
+      context: context,
+      title: local.requestMoney,
+      actionText: local.request,
+      nameController: nameControllerRequest,
+      phoneController: phoneControllerRequest,
+      amountController: amountControllerRequest,
+      onAction: () {
+        Navigator.of(context).pop();
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            Future.delayed(const Duration(seconds: 2), () {
+              Navigator.of(context).pop();
+            });
+            return AlertDialog(
+              backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                    size: 60,
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    local.moneyRequested,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+        amountControllerRequest.clear();
+        nameControllerRequest.clear();
+        phoneControllerRequest.clear();
+      },
+    );
+  }
+
+  void showPaymentsDialog() {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    final local = AppLocalizations.of(context)!;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+          title: Text(
+            local.payments,
+            style: TextStyle(
+              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+            ),
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.9,
+              minWidth: 280,
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    local.noOutstandingPayments,
+                    style: TextStyle(
+                      color: Colors.grey[400],
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                local.close,
+                style: const TextStyle(color: Colors.blue),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showBillsDialog() {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    final local = AppLocalizations.of(context)!;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+          title: Text(
+            local.bills,
+            style: TextStyle(
+              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+            ),
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          content: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.9,
+              minWidth: 280,
+              maxHeight: MediaQuery.of(context).size.height * 0.7,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    local.phoneBill,
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${local.billAmountVodafone} ${local.currencySymbol}',
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Divider(
+                    thickness: 0.5,
+                    color: themeProvider.isDarkMode ? Colors.grey[600] : Colors.grey[400],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    local.electricityBill,
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${local.billAmountCkEnergy} ${local.currencySymbol}',
+                    style: TextStyle(
+                      color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
+                      fontSize: 14,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                local.close,
+                style: const TextStyle(color: Colors.blue),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
     final local = AppLocalizations.of(context)!;
-
-    TextEditingController amountControllerSend = TextEditingController();
-    TextEditingController nameControllerSend = TextEditingController();
-    TextEditingController phoneControllerSend = TextEditingController();
-
-    TextEditingController amountControllerRequest = TextEditingController();
-    TextEditingController nameControllerRequest = TextEditingController();
-    TextEditingController phoneControllerRequest = TextEditingController();
-
-    void showSendMoneyDialog() {
-      bool isPersonSelected = false;
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-                title: Text(
-                  local.sendMoney,
-                  style: TextStyle(
-                    color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                  ),
-                ),
-                contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-                insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                content: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.9,
-                    minWidth: 280,
-                    maxHeight: MediaQuery.of(context).size.height * 0.7,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          local.savedContacts,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ListTile(
-                          leading: CircleAvatar(
-                            radius: 25,
-                            backgroundImage: const AssetImage('assets/images/rabiaa.jpg'),
-                            child: const AssetImage('assets/images/rabiaa.jpg') == null
-                                ? Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  )
-                                : null,
-                          ),
-                          title: Text(
-                            local.contactName,
-                            style: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            ),
-                          ),
-                          onTap: () {
-                            setState(() {
-                              if (isPersonSelected) {
-                                isPersonSelected = false;
-                                nameControllerSend.clear();
-                                phoneControllerSend.clear();
-                              } else {
-                                isPersonSelected = true;
-                                nameControllerSend.text = local.contactName;
-                                phoneControllerSend.text = '+905551234567';
-                              }
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.fullName}:',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: nameControllerSend,
-                          enabled: true,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterFullName,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.phoneNumber}:',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: phoneControllerSend,
-                          enabled: true,
-                          keyboardType: TextInputType.phone,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterPhoneNumber,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.amount} (${local.currencySymbol}):',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: amountControllerSend,
-                          keyboardType: TextInputType.number,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterAmount,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      if (nameControllerSend.text.isNotEmpty &&
-                          phoneControllerSend.text.isNotEmpty &&
-                          amountControllerSend.text.isNotEmpty) {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    local.recipient,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    local.recipientNameDisplay(nameControllerSend.text),
-                                    style: TextStyle(
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    local.recipientPhoneDisplay(phoneControllerSend.text),
-                                    style: TextStyle(
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    local.recipientAmountDisplay(local.currencySymbol, amountControllerSend.text),
-                                    style: TextStyle(
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    local.confirm,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    local.no,
-                                    style: const TextStyle(color: Colors.red),
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).pop();
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        Future.delayed(const Duration(seconds: 2), () {
-                                          Navigator.of(context).pop();
-                                        });
-                                        return AlertDialog(
-                                          backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(16),
-                                          ),
-                                          content: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                Icons.check_circle,
-                                                color: Colors.green,
-                                                size: 60,
-                                              ),
-                                              const SizedBox(height: 16),
-                                              Text(
-                                                local.moneySent,
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                local.receiptSent,
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
-                                    amountControllerSend.clear();
-                                    nameControllerSend.clear();
-                                    phoneControllerSend.clear();
-                                  },
-                                  child: Text(
-                                    local.yes,
-                                    style: const TextStyle(color: Colors.blue),
-                                  ),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                    child: Text(
-                      local.send,
-                      style: const TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-      );
-    }
-
-    void showRequestMoneyDialog() {
-      bool isPersonSelected = false;
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return StatefulBuilder(
-            builder: (context, setState) {
-              return AlertDialog(
-                backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-                title: Text(
-                  local.requestMoney,
-                  style: TextStyle(
-                    color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                  ),
-                ),
-                contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-                insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                content: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: MediaQuery.of(context).size.width * 0.9,
-                    minWidth: 280,
-                    maxHeight: MediaQuery.of(context).size.height * 0.7,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          local.savedContacts,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        ListTile(
-                          leading: CircleAvatar(
-                            radius: 25,
-                            backgroundImage: const AssetImage('assets/images/rabiaa.jpg'),
-                            child: const AssetImage('assets/images/rabiaa.jpg') == null
-                                ? Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                  )
-                                : null,
-                          ),
-                          title: Text(
-                            local.contactName,
-                            style: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            ),
-                          ),
-                          onTap: () {
-                            setState(() {
-                              if (isPersonSelected) {
-                                isPersonSelected = false;
-                                nameControllerRequest.clear();
-                                phoneControllerRequest.clear();
-                              } else {
-                                isPersonSelected = true;
-                                nameControllerRequest.text = local.contactName;
-                                phoneControllerRequest.text = '+905551234567';
-                              }
-                            });
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.fullName}:',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: nameControllerRequest,
-                          enabled: true,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterFullName,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.phoneNumber}:',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: phoneControllerRequest,
-                          enabled: true,
-                          keyboardType: TextInputType.phone,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterPhoneNumber,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          '${local.amount} (${local.currencySymbol}):',
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextField(
-                          controller: amountControllerRequest,
-                          keyboardType: TextInputType.number,
-                          style: TextStyle(
-                            color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                          ),
-                          decoration: InputDecoration(
-                            hintText: local.enterAmount,
-                            hintStyle: TextStyle(
-                              color: themeProvider.isDarkMode ? Colors.white54 : Colors.black54,
-                            ),
-                            filled: true,
-                            fillColor: themeProvider.isDarkMode ? Colors.grey[900] : Colors.grey[200],
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      if (nameControllerRequest.text.isNotEmpty &&
-                          phoneControllerRequest.text.isNotEmpty &&
-                          amountControllerRequest.text.isNotEmpty) {
-                        Navigator.of(context).pop();
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            Future.delayed(const Duration(seconds: 2), () {
-                              Navigator.of(context).pop();
-                            });
-                            return AlertDialog(
-                              backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.green,
-                                    size: 60,
-                                  ),
-                                  const SizedBox(height: 16),
-                                  Text(
-                                    local.moneyRequested,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                        amountControllerRequest.clear();
-                        nameControllerRequest.clear();
-                        phoneControllerRequest.clear();
-                      }
-                    },
-                    child: Text(
-                      local.request,
-                      style: const TextStyle(color: Colors.blue),
-                    ),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-      );
-    }
-
-    void showPaymentsDialog() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-            title: Text(
-              local.payments,
-              style: TextStyle(
-                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-              ),
-            ),
-            contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-            insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            content: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.9,
-                minWidth: 280,
-                maxHeight: MediaQuery.of(context).size.height * 0.7,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 16),
-                    Text(
-                      local.noOutstandingPayments,
-                      style: TextStyle(
-                        color: Colors.grey[400],
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  local.close,
-                  style: const TextStyle(color: Colors.blue),
-                ),
-              ),
-            ],
-          );
-        },
-      );
-    }
-
-    void showBillsDialog() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
-            title: Text(
-              local.bills,
-              style: TextStyle(
-                color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-              ),
-            ),
-            contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-            insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            content: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.9,
-                minWidth: 280,
-                maxHeight: MediaQuery.of(context).size.height * 0.7,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 16),
-                    Text(
-                      local.phoneBill,
-                      style: TextStyle(
-                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${local.billAmountVodafone} ${local.currencySymbol}',
-                      style: TextStyle(
-                        color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Divider(
-                      thickness: 0.5,
-                      color: themeProvider.isDarkMode ? Colors.grey[600] : Colors.grey[400],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      local.electricityBill,
-                      style: TextStyle(
-                        color: themeProvider.isDarkMode ? Colors.white : Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${local.billAmountCkEnergy} ${local.currencySymbol}',
-                      style: TextStyle(
-                        color: themeProvider.isDarkMode ? Colors.white70 : Colors.black54,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                  ],
-                ),
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  local.close,
-                  style: const TextStyle(color: Colors.blue),
-                ),
-              ),
-            ],
-          );
-        },
-      );
-    }
 
     return Scaffold(
       appBar: AppBar(
@@ -736,7 +679,9 @@ class HomeScreen extends StatelessWidget {
                   color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                context.go('/home');
+              },
             ),
             ListTile(
               leading: Icon(
@@ -751,7 +696,7 @@ class HomeScreen extends StatelessWidget {
               ),
               onTap: () {
                 context.go('/settings');
-                },
+              },
             ),
             ListTile(
               leading: Icon(
@@ -822,7 +767,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "${local.currencySymbol} 5,000.00",
+                      "${local.currencySymbol} ${Provider.of<BalanceProvider>(context).balance.toStringAsFixed(2)}",
                       style: TextStyle(
                         fontFamily: 'Lexend Giga',
                         fontSize: 28,
@@ -871,11 +816,11 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Column(
                 children: [
-                  _buildExpenseCard(local.expenseNetflix, 
+                  _buildExpenseCard(local.expenseNetflix,
                     "${local.currencySymbol} 150.00", Colors.red, Icons.movie, themeProvider, 0),
-                  _buildExpenseCard(local.expenseSpotify, 
+                  _buildExpenseCard(local.expenseSpotify,
                     "${local.currencySymbol} 49.99", Colors.green, Icons.music_note, themeProvider, 1),
-                  _buildExpenseCard(local.expenseSokBeylerbeyi, 
+                  _buildExpenseCard(local.expenseSokBeylerbeyi,
                     "${local.currencySymbol} 1250.24", Colors.blue, Icons.store, themeProvider, 2),
                 ],
               ),
@@ -887,9 +832,10 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon, 
+  Widget _buildExpenseCard(String title, String amount, Color color, IconData icon,
       ThemeProvider themeProvider, int index) {
     return AnimatedExpenseCard(
+      key: ValueKey(index),
       title: title,
       amount: amount,
       color: color,
@@ -923,7 +869,7 @@ class AnimatedActionButton extends StatefulWidget {
   _AnimatedActionButtonState createState() => _AnimatedActionButtonState();
 }
 
-class _AnimatedActionButtonState extends State<AnimatedActionButton> 
+class _AnimatedActionButtonState extends State<AnimatedActionButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
@@ -1011,19 +957,20 @@ class AnimatedExpenseCard extends StatefulWidget {
   final int index;
 
   const AnimatedExpenseCard({
+    Key? key,
     required this.title,
     required this.amount,
     required this.color,
     required this.icon,
     required this.themeProvider,
     required this.index,
-  });
+  }) : super(key: key);
 
   @override
   _AnimatedExpenseCardState createState() => _AnimatedExpenseCardState();
 }
 
-class _AnimatedExpenseCardState extends State<AnimatedExpenseCard> 
+class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _slideAnimation;
@@ -1031,10 +978,18 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
   @override
   void initState() {
     super.initState();
+    _initializeAnimation();
+  }
+
+  void _initializeAnimation() {
     _controller = AnimationController(
-      duration: Duration(milliseconds: 500 + (widget.index * 200)),
+      duration: Duration(milliseconds: 500 + (widget.index.clamp(0, 10) * 200)),
       vsync: this,
-    );
+    )..addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _controller.stop();
+      }
+    });
     _slideAnimation = Tween<Offset>(
       begin: const Offset(0, 1),
       end: Offset.zero,
@@ -1042,11 +997,35 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
       parent: _controller,
       curve: Curves.easeOut,
     ));
-    _controller.forward();
+    if (mounted) {
+      _controller.forward();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final currentTheme = Provider.of<ThemeProvider>(context, listen: false);
+    if (currentTheme != widget.themeProvider) {
+      _controller.stop();
+      _controller.dispose();
+      _initializeAnimation();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant AnimatedExpenseCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.index != oldWidget.index || widget.themeProvider.isDarkMode != oldWidget.themeProvider.isDarkMode) {
+      _controller.stop();
+      _controller.dispose();
+      _initializeAnimation();
+    }
   }
 
   @override
   void dispose() {
+    _controller.stop();
     _controller.dispose();
     super.dispose();
   }
@@ -1054,6 +1033,8 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
   @override
   Widget build(BuildContext context) {
     final local = AppLocalizations.of(context)!;
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+    if (themeProvider == null) return const SizedBox();
     return SlideTransition(
       position: _slideAnimation,
       child: Container(
@@ -1061,7 +1042,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
         child: Material(
           elevation: 4,
           borderRadius: BorderRadius.circular(15),
-          color: widget.themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
+          color: themeProvider.isDarkMode ? Colors.grey[850] : Colors.white,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: Row(
@@ -1096,7 +1077,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
-                          color: widget.themeProvider.isDarkMode ? Colors.white : Colors.black,
+                          color: themeProvider.isDarkMode ? Colors.white : Colors.black,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -1104,7 +1085,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
                         local.expenseAmount,
                         style: TextStyle(
                           fontSize: 12,
-                          color: widget.themeProvider.isDarkMode ? Colors.grey[400] : Colors.black54,
+                          color: themeProvider.isDarkMode ? Colors.grey[400] : Colors.black54,
                         ),
                       ),
                     ],
@@ -1115,7 +1096,7 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: widget.themeProvider.isDarkMode ? Colors.white : Colors.black87,
+                    color: themeProvider.isDarkMode ? Colors.white : Colors.black87,
                   ),
                 ),
               ],
