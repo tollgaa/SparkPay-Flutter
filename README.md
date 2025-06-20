@@ -109,6 +109,9 @@ flutter  run
 ```
 lib/
 ├── modeller/
+├── l10n
+│   ├──app_en.arb
+│   ├──app_tr.arb
 ├── ekranlar/
 │   ├── currency_screen.dart # Döviz Sayfası 
 │   ├── home_screen.dart     # Ana Sayfa
@@ -127,10 +130,6 @@ lib/
     ├── theme_provider.dart
     └── themes.dart
 ```
-
-## Tanıtım Videosu
-
-https://github.com/user-attachments/assets/40151a38-1ef9-43ae-bf98-3f67d8187fe7
 
 ## Ekran Görüntüleri
   
