@@ -1,1 +1,0 @@
-//Hafızaya kalıcı olarak yazma/okuma işlemleri burada yapılıyor.

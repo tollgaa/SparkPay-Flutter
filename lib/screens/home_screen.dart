@@ -1106,4 +1106,4 @@ class _AnimatedExpenseCardState extends State<AnimatedExpenseCard>
       ),
     );
   }
-}
+  }
